@@ -1,8 +1,6 @@
 # What is an IDE?
 An integrated development environment (IDE) helps streamline the process of writing and executing code. It allows you to write, debug, compile, and run code in the same software, rather than using a text editor and the command line.
 
-VScode is a very popular IDE.
-
 # Arduino IDE Installation
 [Download the Arduino IDE](https://www.arduino.cc/en/software/)
 
