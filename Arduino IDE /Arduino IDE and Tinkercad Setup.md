@@ -15,14 +15,14 @@ Download Steps Windows:
 6. Once the download is finished, open the IDE
 7. It will likely ask for permission to make changes to your PC-- this is just so it can download the required packages and libraries. Click accept. 
 
-#Visual Studio Code Installation 
+# Visual Studio Code Installation 
 [Download VS Code](https://code.visualstudio.com/download)
 
 
-#TinkerCad Account Setup
+# TinkerCad Account Setup
 [Create a personal account on Tinkercad.](https://www.tinkercad.com/join) 
 We'll use Tinkercad to simulate code with a virtual Arduino, practice wiring, and model different circuits. 
 
-#GitHub Account Setup
+# GitHub Account Setup
 [Optional: Create a Github account here.](https://github.com/) 
 This is optional, but it's a great way to keep track of your code in a personal repository. You'll likely use GitHub throughout college for classes, clubs, and personal projects.
