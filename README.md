@@ -55,11 +55,11 @@ By the end of the bootcamp, you’ll be able to:
 
 | Day | Topics | Link |
 | --- | ------ | ---- |
-| Monday (8/11) | Basics of Coding, Arduino IDE, Variables, Motors, Loops | [Go to Day 1 →](./Day1-Basics-of-Coding.md) |
-| Tuesday (8/12) | Servo Motors, Functions, Conditionals, Arrays | [Go to Day 2 →](./Day2-Conditionals-and-Functions.md) |
-| Wednesday (8/13) | Sensors, Libraries, Serial Monitor | [Go to Day 3 →](./Day3-Sensors-and-Libraries.md) |
-| Thursday (8/14) | TinkerCAD, Circuit Lab, Final Build Help | [Go to Day 4 →](./Day4-Tools-and-Project-Build.md) |
-| Friday (8/15) | In-Person: Upload, Test, and Demo Robot! | [Go to Day 5 →](./Day5-InPerson-Demo.md) |
+| Monday (8/11) | Basics of Coding, Arduino IDE, Variables, Motors, Loops | [Go to Day 1 →](./DayOne.md) |
+| Tuesday (8/12) | Servo Motors, Functions, Conditionals, Arrays | [Go to Day 2 →](./DayTwo.md) |
+| Wednesday (8/13) | Sensors, Libraries, Serial Monitor | [Go to Day 3 →](./DayThree.md) |
+| Thursday (8/14) | TinkerCAD, Circuit Lab, Final Build Help | [Go to Day 4 →](./DayFour.md) |
+| Friday (8/15) | In-Person: Upload, Test, and Demo Robot! | [Go to Day 5 →](./DayFive.md) |
 
 ---
 
