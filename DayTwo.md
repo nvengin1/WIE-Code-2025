@@ -1,3 +1,3 @@
-#Day 2 - Loops, Functions, Libraries and more!
+# Day 2 - Loops, Functions, Libraries and more!
 
 
