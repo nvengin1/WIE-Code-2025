@@ -123,6 +123,7 @@ analogWrite(motorPin1, 128); // 50% speed
 
 ###  Image Placeholder:
 _Add waveform diagram showing different duty cycles._
+<img width="478" height="301" alt="image" src="https://github.com/user-attachments/assets/1848184e-3e5d-4530-9420-344329ec757c" />
 
 ---
 
