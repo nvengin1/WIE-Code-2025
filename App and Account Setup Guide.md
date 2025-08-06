@@ -22,6 +22,8 @@ Download Steps Windows:
 [Create a personal account on Tinkercad.](https://www.tinkercad.com/join) 
 We'll use Tinkercad to simulate code with a virtual Arduino, practice wiring, and model different circuits. 
 
+Join the WIE Code Bootcamp Tinkercad Course **here**
+
 # GitHub Account Setup
 [Optional: Create a Github account here.](https://github.com/) 
 This is optional, but it's a great way to keep track of your code in a personal repository. You'll likely use GitHub throughout college for classes, clubs, and personal projects.
