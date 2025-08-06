@@ -16,6 +16,7 @@ Download Steps Windows:
 # Visual Studio Code Installation 
 [Download VS Code](https://code.visualstudio.com/download)
 
+[Follow this tutorial to setup VS code.](https://dev.to/narottam04/step-by-step-guide-how-to-set-up-visual-studio-code-for-c-and-c-programming-2021-1f0i)
 
 # TinkerCad Account Setup
 [Create a personal account on Tinkercad.](https://www.tinkercad.com/join) 
