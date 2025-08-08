@@ -328,3 +328,126 @@ By measuring that time and applying the speed of sound, you can accurately measu
 ---
 
 
+## 4. Potentiometer — Variable Resistor Basics
+
+A **potentiometer** (often called a “pot”) is a **three-terminal variable resistor**.  
+You’ve probably used one today without realizing it—volume knobs, light dimmers, joystick controls, and even some touch-sensitive lamps all use potentiometers.
+
+---
+
+### 4.1 The Physics Behind It
+
+**Core principle:**  
+A potentiometer changes its **resistance** as you rotate its shaft or slider. This changes how much **voltage** appears at its output terminal, based on **Ohm’s Law**:
+
+\[
+V = I \times R
+\]
+
+**Construction:**
+- Inside is a **resistive track** (often made of carbon or conductive plastic).
+- A **wiper** (connected to the middle terminal) moves across the track when you turn the knob or slide the control.
+- Two outer pins connect to the ends of the resistive track.
+- The **position** of the wiper determines how much resistance is between it and each end.
+
+**Voltage Divider Effect:**
+When you connect a potentiometer between 5V and GND:
+- One end is **high voltage** (5V),
+- The other end is **low voltage** (0V),
+- The wiper outputs a voltage **somewhere in between**, proportional to its position.
+
+This is a classic **voltage divider**:
+\[
+V_\text{out} = V_\text{in} \times \frac{R_2}{R_1 + R_2}
+\]
+
+---
+
+### 4.2 How It Works with Arduino
+
+Arduino has an **Analog-to-Digital Converter (ADC)** that reads voltages between **0V and 5V** and converts them to an integer between **0 and 1023** (`analogRead()` function).
+
+Example:
+- Wiper at **0%** → ~0V → `analogRead()` returns 0.
+- Wiper at **50%** → ~2.5V → `analogRead()` returns ~512.
+- Wiper at **100%** → ~5V → `analogRead()` returns ~1023.
+
+---
+
+### 4.3 Real-World Uses
+
+Potentiometers are everywhere in electronics:
+- **Volume controls** in audio devices.
+- **Light dimmers** for lamps.
+- **Position control** for servo motors or robotics.
+- **Menu navigation knobs** in embedded systems.
+- **Game controllers** (joysticks are basically two potentiometers—one for X-axis, one for Y-axis).
+
+---
+
+### 4.4 Basic Wiring with Arduino
+
+**Pins:**
+- **Left pin** → 5V  
+- **Right pin** → GND  
+- **Middle pin (wiper)** → Arduino **analog input** (e.g., A0)
+
+---
+
+### 4.5 Minimal Code Example
+
+```cpp
+const int potPin = A0; // Middle pin of potentiometer
+
+void setup() {
+  Serial.begin(9600); // For viewing readings
+}
+
+void loop() {
+  int potValue = analogRead(potPin); // 0 to 1023
+  float voltage = (potValue / 1023.0) * 5.0; // Convert to volts
+
+  Serial.print("Raw: ");
+  Serial.print(potValue);
+  Serial.print(" | Voltage: ");
+  Serial.println(voltage);
+
+  delay(200);
+}
+```
+
+---
+
+### 4.6 Example: Controlling LED Brightness
+
+We can map potentiometer readings directly to **PWM** for brightness control.
+
+```cpp
+const int potPin = A0;
+const int ledPin = 9; // PWM-capable pin
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  int potValue = analogRead(potPin); // 0–1023
+  int brightness = map(potValue, 0, 1023, 0, 255); // scale to PWM range
+
+  analogWrite(ledPin, brightness);
+}
+```
+
+---
+
+### 4.7 Tips
+- If readings are noisy, use `delay(5)` or average multiple readings.
+- Potentiometers **wear over time**; avoid continuous heavy rotation.
+- For fine control, use multi-turn precision potentiometers.
+
+
+
+## Demo
+
+---
+
