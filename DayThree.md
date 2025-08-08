@@ -451,3 +451,86 @@ void loop() {
 
 ---
 
+# 5. Breakout Activities 
+
+Now that we’ve learned **libraries**, **servo motors**, **ultrasonic sensors**, and **potentiometers**, it’s time to practice!  
+We’ll start with **small, focused challenges** and build toward **multi-component mini-projects**.  
+All activities will be simulated in **TinkerCAD Circuits**.
+
+---
+
+## Activity 1 – Servo Warm-Up
+**Goal:** Learn to move a servo to specific angles using the `Servo.h` library.
+
+**Instructions:**
+1. Connect a servo motor to Arduino pin **9** (signal), **5V** (Vcc), and **GND**.
+2. Include the `Servo.h` library.
+3. In `loop()`, move the servo to:
+   - 0°
+   - 90°
+   - 180°
+   - back to 0°
+4. Add a `delay(1000)` between each move.
+
+**Stretch Goal:** Make the servo sweep smoothly from 0° to 180° using a `for` loop.
+
+---
+
+## Activity 2 – Ultrasonic Distance Reader
+**Goal:** Measure distances with the HC-SR04 ultrasonic sensor and print to the Serial Monitor.
+
+**Instructions:**
+1. Connect **Trig** to Arduino pin **7**, **Echo** to pin **6**, **Vcc** to 5V, **GND** to GND.
+2. Write code to:
+   - Send a 10µs pulse from Trig.
+   - Measure the Echo return time.
+   - Convert the time into **distance in cm** using:
+     \[
+     \text{Distance} = \frac{\text{Time} \times 0.0343}{2}
+     \]
+3. Print the distance every 500 ms in the Serial Monitor.
+
+**Stretch Goal:** Display “Object too close!” when distance < 10 cm.
+
+---
+
+## Activity 3 – Potentiometer Voltage Monitor
+**Goal:** Read a potentiometer and display voltage values.
+
+**Instructions:**
+1. Connect left pin to **5V**, right pin to **GND**, middle pin to **A0**.
+2. Use `analogRead()` to get a raw value (0–1023).
+3. Convert to voltage and print:
+   ```
+   Raw: 512 | Voltage: 2.50V
+   ```
+
+---
+
+## Activity 4 – Servo Controlled by Potentiometer
+**Goal:** Control servo position using potentiometer input.
+
+**Instructions:**
+1. Combine **Activity 1** and **Activity 3** wiring.
+2. Map potentiometer range (0–1023) to servo angles (0–180).
+3. Turn the knob to move the servo in real time.
+
+
+---
+
+## Activity 5 – Distance-Activated Servo Gate
+**Goal:** Open a gate (servo) when an object is detected nearby.
+
+**Instructions:**
+1. Place ultrasonic sensor facing forward.
+2. If object distance < 10 cm:
+   - Move servo to 90° (open).
+   - Wait 3 seconds.
+   - Return to 0° (closed).
+3. Otherwise, keep servo at 0°.
+
+
+---
+
+
+# 6. Wrap 
