@@ -533,4 +533,31 @@ All activities will be simulated in **TinkerCAD Circuits**.
 ---
 
 
-# 6. Wrap 
+# 6. Wrap-Up
+
+Today we moved beyond basic Arduino coding and into the world of **hardware control and sensing**.  
+By combining **libraries** with new hardware, we learned how to make the Arduino *interact with the real world*.
+
+**Key Takeaways:**
+- **Libraries** are pre-written code collections that make controlling hardware easier and faster.
+- **Servo Motors** provide precise rotational movement (0°–180°) and are easy to control with the `Servo.h` library.
+- **Ultrasonic Sensors** measure distance by timing sound pulses (Trig pin sends, Echo pin receives) and use basic physics to calculate how far away objects are.
+- **Potentiometers** are variable resistors that change voltage output, making them perfect for input controls like knobs and sliders.
+- Using the **Serial Monitor** is critical for debugging, viewing sensor values, and confirming that your logic works.
+
+**What We Practiced:**
+1. Installing and using libraries.
+2. Moving a servo to fixed positions and sweeping angles.
+3. Measuring distances with ultrasonic sensors and converting timing to centimeters.
+4. Reading analog values from a potentiometer and mapping them to control other devices.
+5. Combining multiple components into functional mini-projects.
+
+**Why This Matters:**
+Today’s skills are building blocks for real-world engineering:
+- Robotics arms and grippers → **Servos**
+- Obstacle detection in autonomous vehicles → **Ultrasonic Sensors**
+- User control interfaces → **Potentiometers**
+- Efficient programming → **Libraries**
+
+
+
