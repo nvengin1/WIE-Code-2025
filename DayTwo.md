@@ -610,12 +610,83 @@ void loop() {
 
 ---
 
-### 5.6 Try It in TinkerCAD
-1. Wire the pushbutton so one leg is to **Pin 2**, the opposite leg is to **GND**.
-2. Upload and run the code above.
-3. Open the Serial Monitor in TinkerCAD.
-4. Press the button in the simulation — you should see `"Button is PRESSED"` messages.
+### 5.6 Demo in TinkerCAD
+Wire the pushbutton so one leg is to **Pin 2**, the opposite leg is to **GND**.
+
 
 ---
 
+## Breakout Activities (TinkerCAD)
 
+Now it’s time to put today’s concepts into practice!  
+These challenges are designed so you can complete them in TinkerCAD, using an Arduino Uno, breadboard, LEDs, resistors, and a pushbutton.
+
+---
+
+### **Activity 1 – Simple Button Control**
+**Goal:** Press the pushbutton to turn ON an LED, release to turn it OFF.  
+- Use `digitalRead()` to detect button press.
+- Use `digitalWrite()` to control the LED.
+- **Tip:** Try using both `INPUT` and `INPUT_PULLUP` modes to see the difference in logic.
+
+---
+
+### **Activity 2 – If-Else LED Color Control**
+**Goal:** Two LEDs:  
+- If the button is pressed, the **red** LED turns ON and the **green** LED turns OFF.  
+- If not pressed, the **green** LED turns ON and the **red** LED turns OFF.  
+- This reinforces `if` vs. `else` control.
+
+---
+
+### **Activity 3 – If-Else-If Pattern Challenge**
+**Goal:**  
+- Use **three LEDs** (red, yellow, green).  
+- Press the button **once** → only red LED ON.  
+- Press the button **twice** → only yellow LED ON.  
+- Press the button **three times** → only green LED ON.  
+- Then cycle back to red.  
+- **Hint:** You’ll need a variable to keep track of button presses.
+
+---
+
+### **Activity 4 – For Loop LED Chase**
+**Goal:** Create a “running light” effect across **4 LEDs**.  
+- Use a `for` loop to turn them ON in sequence, then OFF in sequence.  
+- Add a small `delay()` so the movement is visible.  
+- **Bonus:** Make the chase reverse direction after reaching the last LED.
+
+---
+
+### **Activity 5 – While Loop Hold**
+**Goal:** While the button is pressed, make an LED blink rapidly.  
+- Use a `while` loop so blinking continues until the button is released.
+- **Tip:** Be careful to avoid locking the Arduino in the loop forever.
+
+---
+
+### **Activity 6 – Morse Code Button Press**
+**Goal:**  
+- Use the **built-in LED** to flash “SOS” in Morse code (`... --- ...`).  
+- Button press starts the sequence; releasing stops it.  
+- **Hint:** Dots are short blinks, dashes are longer blinks.
+
+---
+
+### **Activity 7 – The Pushbutton Memory Game**
+**Goal:**  
+- Arduino shows a sequence of LEDs lighting up (like Simon Says).  
+- Use `for` loops to create the sequence.  
+- Pressing the button at the right time “matches” the light, and Arduino responds with a success blink.  
+- Keep it simple—just 2–3 steps for now.
+
+---
+
+### **Activity 8 – Button + LED Dimming**
+**Goal:**  
+- Connect an LED to a PWM pin (like Pin 9).  
+- Each button press increases LED brightness by 50 (0–255 scale).  
+- When it passes 255, wrap back to 0 (OFF).  
+- **Hint:** Use `analogWrite()`.
+
+---
