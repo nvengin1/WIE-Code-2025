@@ -616,7 +616,7 @@ Wire the pushbutton so one leg is to **Pin 2**, the opposite leg is to **GND**.
 
 ---
 
-## Breakout Activities (TinkerCAD)
+## 6. Breakout Activities (TinkerCAD)
 
 Now it’s time to put today’s concepts into practice!  
 These challenges are designed so you can complete them in TinkerCAD, using an Arduino Uno, breadboard, LEDs, resistors, and a pushbutton.
@@ -690,3 +690,23 @@ These challenges are designed so you can complete them in TinkerCAD, using an Ar
 - **Hint:** Use `analogWrite()`.
 
 ---
+
+## 7. Wrap-Up
+
+###  What You Should Know Now:
+- How to use **if**, **else**, and **if-else** statements to control program flow.
+- How to write and understand **for loops** and **while loops**, including their differences.
+- How to declare and call **functions** to organize code.
+- How to properly comment, indent, and name variables for clean, readable code.
+- Basics of **Arduino wiring**: voltage pins, ground pins, and digital/PWM pins.
+- How a **pushbutton** works physically and in code, and how to use `digitalRead()` to detect button states.
+- How to combine logic with wiring to create interactive projects in TinkerCAD.
+
+###  Homework / Practice:
+- Recreate at least **two** of today’s breakout activities in TinkerCAD from scratch (don’t reuse your saved version).
+- Practice adding **print statements** in the `setup()` function to display messages in the Serial Monitor.
+
+---
+
+**Next Up – Day 3:**
+Sensors, Case Testing, Potentionometer, and more
