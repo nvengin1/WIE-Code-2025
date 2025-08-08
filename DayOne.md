@@ -26,16 +26,6 @@ Before we can write code for Arduino, we need an **IDE** — the software where 
 - **In this workshop:** we’ll use the **Arduino IDE** because it’s lightweight, beginner-friendly, and designed for Arduino boards.
 
 ---
-###  Image Placeholder:
-_Add a visual comparing natural language vs machine code vs Arduino code._
-
-###  Code Block Placeholder:
-_Add sample code snippet for a simple `setup()` and `loop()` structure._
-
-###  Resources:
-- [ ] Link to slides or handout (optional)
-
----
 
 ## 2. What is the Arduino Microcontroller and How Does it Run Code?
 
@@ -84,11 +74,11 @@ Think of it as the “if this, then that” logic you already use every day:
 
 ### The Three Basic Boolean Operators
 1. **AND (`&&`)** – True only if *both* conditions are true.
-   - *Analogy:* “I’ll go to the park **if it’s sunny AND I’m free from work.**”
+   - *Example:* “I’ll go to the park **if it’s sunny AND I’m free from work.**”
 2. **OR (`||`)** – True if *at least one* condition is true.
-   - *Analogy:* “I’ll order pizza **if I’m hungry OR if my friends want it.**”
+   - *Example:* “I’ll order pizza **if I’m hungry OR if my friends want it.**”
 3. **NOT (`!`)** – Reverses the condition.
-   - *Analogy:* “I’ll wear sunglasses **if it is NOT cloudy.**”
+   - *Example:* “I’ll wear sunglasses **if it is NOT cloudy.**”
 
 ---
 
@@ -322,7 +312,7 @@ void loop() {
 }
 ```
 
-**Analogy:**  
+**Example:**  
 Think of a water pipe — you have to decide if it’s going to **let water in** or **send water out** before turning the valve.
 
 ---
@@ -354,7 +344,7 @@ void loop() {
 }
 ```
 
-**Analogy:**  
+**Example:**  
 Like flipping a light switch — either the light is ON or it’s OFF, no in-between.
 
 ---
@@ -380,7 +370,7 @@ void loop() {
 }
 ```
 
-**Analogy:**  
+**Example:**  
 Like telling someone, “Clap your hands, then wait 2 seconds before clapping again.”
 
 > **Tip:** Later you’ll learn how to do timing without `delay()` so you can run multiple things at once.
@@ -414,7 +404,7 @@ void loop() {
 }
 ```
 
-**Analogy:**  
+**Example:**  
 Imagine flicking a light switch on and off really fast — if it’s on most of the time, it **looks bright**; if it’s off more than on, it **looks dim**.
 
 ---
@@ -441,13 +431,6 @@ void loop() {
 }
 ```
 
----
-
-**Image Placeholders:**
-- _PinMode diagram showing input vs output_
-- _DigitalWrite “switch” graphic_
-- _Delay as a pause in a sequence_
-- _AnalogWrite showing different PWM duty cycles_
 
 ---
 
