@@ -23,9 +23,9 @@ You will be able to join the WIE Code Bootcamp classroom with your name and acce
 A personal account should not be required, but it is encouraged. 
 
 [Create a personal account on Tinkercad.](https://www.tinkercad.com/join) 
+
 We'll use Tinkercad to simulate code with a virtual Arduino, practice wiring, and model different circuits. 
 
-Join the WIE Code Bootcamp Tinkercad Course **here**
 
 # GitHub Account Setup
 [Optional: Create a Github account here.](https://github.com/) 
