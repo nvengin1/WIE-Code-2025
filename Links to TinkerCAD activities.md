@@ -11,3 +11,6 @@ DayThree Servo Demo (https://www.tinkercad.com/things/6gw6rhTDwYr-day-three-serv
 DayThree Sensor Demo (https://www.tinkercad.com/things/5D1Ha9AXcl7-day-three-sensor-demo?sharecode=t6VUL9bD5VK7zyadrsF5aX1RsvNNpRGSYOgzgVBsWBQ)
 
 DayThree Breakout Activities (https://www.tinkercad.com/things/6VMlGqT627N-day-three-breakout-activities?sharecode=pnxvs15PJFiWh0485-NfQT3zyEvmH_DdtKt_qDAFPlg)
+
+DayFour Breakout Activities (https://www.tinkercad.com/things/d9pboNenSJk-day-four-breakout-activities?sharecode=hTBoTV8KejmMWc0DrDlEiIA3mEScdMVgT4UtXYmsEmw)
+
