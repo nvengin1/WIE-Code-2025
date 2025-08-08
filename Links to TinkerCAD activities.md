@@ -7,3 +7,5 @@ DayTwo PushButton Tutorial (https://www.tinkercad.com/things/0hO09zVecv2-learnin
 DayTwo Breakout Activites (https://www.tinkercad.com/things/5XczNLjBGZM-day-two-breakout-activity-?sharecode=l2_6gB9D_snfLvVUgOdq86XkWzhClnPociERSkhkPBY)
 
 DayThree Servo Demo (https://www.tinkercad.com/things/6gw6rhTDwYr-day-three-servo-motor-demo?sharecode=a9VI0XeaQ7YnlUR9XVHdWyLptmVUK3br8MrGFoOculI)
+
+DayThree Sensor Demo (https://www.tinkercad.com/things/5D1Ha9AXcl7-day-three-sensor-demo?sharecode=t6VUL9bD5VK7zyadrsF5aX1RsvNNpRGSYOgzgVBsWBQ)
