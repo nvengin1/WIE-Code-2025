@@ -168,5 +168,163 @@ Even though most hobby servos rotate only 180°, they are extremely useful for:
 
 ### Demo:
 
+---
+
+## 3. Ultrasonic Sensor (HC-SR04) — No Extra Library
+
+The **HC-SR04 ultrasonic sensor** measures distance by using sound waves—similar to how bats and dolphins navigate.  
+Instead of light, it sends out an **ultrasonic pulse** (a sound too high-pitched for human ears) and waits for the echo to bounce back from an object.
+
+---
+
+### 3.1 The Physics Behind It
+
+- **Sound propagation:** Sound travels through air at roughly **343 meters per second** at room temperature (~0.0343 cm/µs).  
+- **Echo timing:** The sensor emits a burst of sound at 40 kHz (40,000 vibrations per second) through its **transmitter**.  
+- When the sound hits an object, part of it bounces back toward the **receiver**.
+- The **time between sending and receiving** tells us how far away the object is.
+
+Because the sound has to travel **to the object and back**, the formula for distance is:
+
+\[
+\text{distance\_cm} = \frac{\text{time\_µs} \times 0.0343}{2}
+\]
+
+If the round-trip took **2000 µs**, the calculation would be:
+
+\[
+\frac{2000 \times 0.0343}{2} \approx 34.3 \ \text{cm}
+\]
+
+---
+
+### 3.2 Understanding TRIG and ECHO Pins
+
+The HC-SR04 has **four pins**:  
+1. **VCC** — Power (5V)  
+2. **GND** — Ground (0V)  
+3. **TRIG** — Trigger pin (**OUTPUT** from Arduino)  
+4. **ECHO** — Echo pin (**INPUT** to Arduino)
+
+**TRIG pin role:**  
+- The Arduino sends a very short, **10 microsecond HIGH pulse** to TRIG.
+- This tells the sensor to emit a sound burst.
+
+**ECHO pin role:**  
+- The sensor sets ECHO **HIGH** while waiting for the sound to return.
+- The length of time ECHO stays HIGH = the sound’s **round-trip time** in microseconds.
+- The Arduino measures this using the `pulseIn()` function.
+
+**Why this matters:**  
+- Without TRIG, the sensor won’t send a pulse—no measurement is possible.
+- Without reading ECHO, the Arduino has no data about how long the sound took to return, meaning it can’t calculate distance.
+
+---
+
+### 3.3 How Arduino Receives Data
+
+- **Step 1:** Arduino sends HIGH to TRIG for 10 µs → sensor emits sound.
+- **Step 2:** ECHO goes HIGH, and the Arduino starts counting microseconds.
+- **Step 3:** When the echo returns, ECHO goes LOW → Arduino stops counting.
+- **Step 4:** Arduino applies the **speed of sound formula** to compute distance.
+
+All of this happens in a fraction of a second, allowing the Arduino to take dozens of measurements per second.
+
+---
+
+### 3.4 Minimal Code (Single Reading)
+
+```cpp
+const int TRIG_PIN = 9;
+const int ECHO_PIN = 10;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(TRIG_PIN, OUTPUT);
+  pinMode(ECHO_PIN, INPUT);
+}
+
+void loop() {
+  // Trigger the sensor
+  digitalWrite(TRIG_PIN, LOW);
+  delayMicroseconds(2);
+  digitalWrite(TRIG_PIN, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIG_PIN, LOW);
+
+  // Measure echo time
+  unsigned long duration = pulseIn(ECHO_PIN, HIGH);
+
+  // Convert to cm
+  float distanceCm = (duration * 0.0343) / 2;
+
+  // Print
+  Serial.print("Distance: ");
+  Serial.print(distanceCm);
+  Serial.println(" cm");
+
+  delay(200);
+}
+```
+
+---
+
+### 3.5 Understanding the Math in Code
+
+- `pulseIn(ECHO_PIN, HIGH)` returns **microseconds** ECHO stayed HIGH.
+- Multiply by **0.0343 cm/µs** → one-way speed of sound in cm.
+- Divide by **2** → because the sound travels to the object and back.
+
+---
+
+### 3.6 Using the Serial Monitor (TinkerCAD)
+
+In TinkerCAD:  
+- Start simulation → click **Serial Monitor** (top-right).  
+- Watch distance updates in real-time as you move an object.
+
+---
+
+### 3.7 Range Calculations
+
+**Max range**: ~4 meters (ECHO HIGH for ~23,500 µs)  
+**Min range**: ~2 cm (ECHO HIGH for ~117 µs)  
+
+If you set a timeout in `pulseIn()` (e.g., `pulseIn(ECHO_PIN, HIGH, 25000)`), you can limit the maximum distance measured.
+
+---
+
+### 3.8 Example: Range-Based Reactions
+
+```cpp
+float distance = (pulseIn(ECHO_PIN, HIGH) * 0.0343) / 2;
+
+if (distance < 10) {
+  Serial.println("Too close!");
+} else if (distance < 30) {
+  Serial.println("Within range");
+} else {
+  Serial.println("Too far");
+}
+```
+
+---
+
+### 3.9 Quick Troubleshooting
+
+- **Always 0 cm?** TRIG not wired or not pulsing.
+- **Always “Too far”?** Object out of range or poor reflection surface.
+- **Jittery readings?** Average several measurements.
+
+---
+
+**Summary:**  
+The TRIG pin is your “speaker switch,” starting the ultrasonic pulse.  
+The ECHO pin is your “stopwatch,” telling Arduino how long the sound took to return.  
+By measuring that time and applying the speed of sound, you can accurately measure distances without any special libraries.
+
+## Demo
+
+---
 
 
