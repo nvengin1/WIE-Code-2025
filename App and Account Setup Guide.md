@@ -20,6 +20,9 @@ Download Steps Windows:
 
 # TinkerCad Account Setup
 [Create a personal account on Tinkercad.](https://www.tinkercad.com/join) 
+You will be able to join the WIE Code Bootcamp classroom with your name and access code as provided by Tabatha in the email. 
+
+A personal account should not be required, but it is encouraged. 
 We'll use Tinkercad to simulate code with a virtual Arduino, practice wiring, and model different circuits. 
 
 Join the WIE Code Bootcamp Tinkercad Course **here**
