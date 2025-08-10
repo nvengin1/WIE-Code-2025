@@ -199,6 +199,9 @@ These are the **entry points** where your code runs — without them, your progr
 - Contains the **main behavior** of your program.
 - Think of it as “the ongoing event” — repeating the same set of actions until something changes.
 
+
+<img width="311" height="181" alt="image" src="https://github.com/user-attachments/assets/1851eb64-9034-448d-959a-a53ab32354cc" />
+
 ---
 
 ### 5.2 Program Flow
@@ -446,7 +449,32 @@ void loop() {
 
 ---
 
+
+
 ## 7. Breakout Activity: TinkerCAD LED Blinker
+
+## Intro to using TinkerCAD
+
+<img width="741" height="339" alt="image" src="https://github.com/user-attachments/assets/abb17aa0-02ef-455d-bf40-6064dbced825" />
+
+## Exploring Circuits
+After singing in to TinkerCAD, you will find a dashboard of your recent designs (if any). You will find the **Circuits** section under **3D Designs**. 
+
+<img width="760" height="473" alt="image" src="https://github.com/user-attachments/assets/ef95f455-b0b0-41e1-a715-1826e353b7f5" />
+
+While on your dashboard, you can scroll through your existing 3D, Codeblocks or Circuits designs. You can also create a new design by clicking the blue + New button in the upper right hand corner of the dashboard and selecting the editor you'd like to open.
+
+Tinkercad’s Circuits editor has a similar layout to its 3D design editor. You’ll find a large window on the left for creating your design. On the right side you’ll see a panel filled with components you can drag and drop into the workspace to create your circuit. 
+
+<img width="698" height="404" alt="image" src="https://github.com/user-attachments/assets/30ca4ad3-87ab-4f5c-878b-4e395e76eaf4" />
+
+Unlike Tinkercad’s 3D design editor, the workspace in Circuits is two-dimensional. You can move your components around by selecting and dragging them, or pan the view around your design by clicking and dragging the empty space around it.
+
+You can also zoom in and out of your design by using the scroll wheel on your mouse, a two-finger gesture on your trackpad, or a key combination of Command + and Command -. 
+
+A “Zoom to fit” button is located in the top left corner of the workspace, which will center and zoom your design to fill the window. Pressing the letter F on your keyboard works as a handy shortcut for this same command.
+
+---
 
 ## Challenge: PWM Dimming + Morse Code “HELLO”
 
