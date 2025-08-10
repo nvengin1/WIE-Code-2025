@@ -25,9 +25,16 @@ Before we can write code for Arduino, we need an **IDE** — the software where 
 - Examples: **VS Code**, **Arduino IDE**, **PyCharm**, **Eclipse**.
 - **In this workshop:** we’ll use the **Arduino IDE** because it’s lightweight, beginner-friendly, and designed for Arduino boards.
 
+<img width="1117" height="595" alt="image" src="https://github.com/user-attachments/assets/6707bd7c-1c73-4a8d-a5d7-8b38e6195f31" />
+
+<img width="1115" height="610" alt="image" src="https://github.com/user-attachments/assets/3685bd5b-c7a6-49ca-b194-43a2ca968996" />
+
 ---
 
 ## 2. What is the Arduino Microcontroller and How Does it Run Code?
+
+<img width="368" height="337" alt="image" src="https://github.com/user-attachments/assets/277175aa-dbce-4c5b-9741-696d2ed1ffeb" />
+
 
 The Arduino is a **microcontroller board** — a small computer on a single integrated circuit.  
 It can **read inputs** (like light levels, button presses, or sensor data) and **produce outputs** (like turning on an LED, spinning a motor, or sending data over USB) based on the code you upload.
@@ -50,6 +57,9 @@ It can **read inputs** (like light levels, button presses, or sensor data) and *
 - **Voltage regulator** – ensures the board and components get stable voltage
 - **Ground (GND) pins** – electrical return path for circuits
 - **Reset button** – restarts the program
+
+  <img width="673" height="518" alt="image" src="https://github.com/user-attachments/assets/0f407ea5-feb0-417d-99c1-b1df770302e6" />
+
 
 ---
 
@@ -378,6 +388,8 @@ Like telling someone, “Clap your hands, then wait 2 seconds before clapping ag
 ---
 
 ### 6.4 `analogWrite()`
+
+<img width="1066" height="486" alt="image" src="https://github.com/user-attachments/assets/7aeb9699-aaee-43d5-bcc0-fe10627d45bc" />
 
 **What it does:**  
 Sends an **analog-like signal** using **PWM (Pulse Width Modulation)** on pins marked with a `~` on the Arduino board.
