@@ -224,6 +224,44 @@ void loop() {
 }
 ```
 
+### Mini Breakout Two
+```cpp
+  // C++ code
+//
+void setup()
+{
+  Serial.begin(9600); // open the serial port at 9600 bps:
+  
+  //Mini Breakout Two
+  //Practice using different variable data types by generating
+  //information about someone trying to enter the event
+  
+  //First name -- string
+  String first = "John";
+  Serial.print("\n\n");
+  Serial.print(first);
+  
+  //Last name -- string
+	
+  //Full name -- string (try to generate this using the previous two strings
+    
+  
+  //Proper shoes -- bool
+  
+  //Amount paid -- float or int (depending on quantity)
+    
+  
+  
+  
+}
+
+void loop()
+{
+
+}
+
+```
+
 ## 5. Basic Syntax and Arduino Structure (setup() vs loop())
 
 Now that we understand **variables** and **logic**, it’s time to look at how Arduino programs are structured.  
