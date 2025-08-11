@@ -112,15 +112,46 @@ Imagine Boolean logic as a bouncer at a club:
 
 **OR**: Lets you in if you’re on the guest list OR you pay at the door.
 
-**NOT**: The bouncer says, “You can come in only if you are NOT wearing flip-flops.”
+**NOT**: The bouncer says, “You can come in only if you are NOT carrying a backpack.”
 
 Just like the bouncer makes quick **yes/no** decisions at the door,
 your Arduino makes quick **true/false** decisions in your circuits —
 thousands of times per second.
 
-###  Image Placeholder:
- 
+###  Mini Breakout One:
+
+Given the example of the bouncer above and the sample Arduino code, write a series of conditional statements 
+(if, else if, else) to describe the bouncer's decisions. 
+
+Start by changing the variable names to be more descriptive (this is not necessary for functionality, but it's very good coding etiquette). 
+Then add an expression to the isAllowedIn variable assignment to calculate the desired result.
+```cpp
+bool isAllowedIn;
+
+
+/*AND Boolean Example
+Bouncer checks the following*/
+
+bool XXX = //guest list condition
+bool YYY = // proper shoes condition
+isAllowedIn = /*assign a new value to isAllowedIn using AND boolean operation*/ ;
+
+
+//OR Boolean Example
+
+int ZZZ = //paying at the door condition
+isAllowedIn = /*assign a new value to isAllowedIn using OR boolean operation*/ ;
+
+
+//OR Boolean Example
+
+int AAA = //backpack condition
+isAllowedIn = /*assign a new value to isAllowedIn using OR boolean operation*/ ;
+
+```
+
 ---
+
 
 ## 4. Variables
 
@@ -393,7 +424,7 @@ Like telling someone, “Clap your hands, then wait 2 seconds before clapping ag
 
 ### 6.4 `analogWrite()`
 
-<img width="1066" height="486" alt="image" src="https://github.com/user-attachments/assets/7aeb9699-aaee-43d5-bcc0-fe10627d45bc" />
+<img width="566" height="246" alt="image" src="https://github.com/user-attachments/assets/7aeb9699-aaee-43d5-bcc0-fe10627d45bc" />
 
 **What it does:**  
 Sends an **analog-like signal** using **PWM (Pulse Width Modulation)** on pins marked with a `~` on the Arduino board.
