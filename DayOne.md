@@ -258,7 +258,7 @@ Even an “empty” sketch must have both `setup()` and `loop()` defined.
 
 ---
 
-### 5.4 Example — LED Blink with Comments
+### 5.4 Example — LED Blink 
 ```cpp
 // GLOBAL variable — LED pin number
 int ledPin = 13;  
