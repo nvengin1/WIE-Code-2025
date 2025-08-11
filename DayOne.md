@@ -126,27 +126,41 @@ Given the example of the bouncer above and the sample Arduino code, write a seri
 Start by changing the variable names to be more descriptive (this is not necessary for functionality, but it's very good coding etiquette). 
 Then add an expression to the isAllowedIn variable assignment to calculate the desired result.
 ```cpp
-bool isAllowedIn;
+  Serial.begin(9600); // open the serial port at 9600 bps:
+  
+  bool isAllowedIn;
 
 
 /*AND Boolean Example
 Bouncer checks the following*/
 
-bool XXX = //guest list condition
-bool YYY = // proper shoes condition
-isAllowedIn = /*assign a new value to isAllowedIn using AND boolean operation*/ ;
+bool XXX; //guest list condition
+bool YYY; // proper shoes condition
+isAllowedIn; /*assign a new value to isAllowedIn using AND boolean operation*/ 
 
-
+//check the value of isAllowedIn
+Serial.print("\nIs this person allowed in?\t");
+Serial.print(isAllowedIn);
+  
+  
+delay(1000);
 //OR Boolean Example
 
-int ZZZ = //paying at the door condition
-isAllowedIn = /*assign a new value to isAllowedIn using OR boolean operation*/ ;
+int ZZZ; //paying at the door condition
+isAllowedIn;/*assign a new value to isAllowedIn using OR boolean operation*/ 
 
-
+//check the value of isAllowedIn
+Serial.print("\nIs this person allowed in?\t");
+Serial.print(isAllowedIn);
+  
 //OR Boolean Example
 
 int AAA = //backpack condition
-isAllowedIn = /*assign a new value to isAllowedIn using OR boolean operation*/ ;
+isAllowedIn; /*assign a new value to isAllowedIn using OR boolean operation*/ 
+
+//check the value of isAllowedIn
+Serial.print("\nIs this person allowed in?\t");
+Serial.print(isAllowedIn);
 
 ```
 
