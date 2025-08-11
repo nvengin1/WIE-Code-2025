@@ -163,7 +163,7 @@ Serial.print("\nIs this person allowed in?\t");
 Serial.print(isAllowedIn);
 
 ```
-### Completed Bouncer Example
+### Completed Mini Breakout One
 
 ```cpp
 // C++ code
@@ -302,6 +302,55 @@ void setup()
     
   
   
+  
+}
+
+void loop()
+{
+
+}
+
+```
+
+### Completed Mini Breakout Two
+
+```cpp
+void setup()
+{
+  Serial.begin(9600); // open the serial port at 9600 bps:
+  
+  //Mini Breakout Two
+  //Practice using different variable data types by generating
+  //information about someone trying to enter the event
+  
+  //First name -- string
+  String first = "John";
+  Serial.print("\n");
+  Serial.print(first);
+  
+  //Last name -- string
+  String last = "Doe";
+  Serial.print("\n");
+  Serial.print(last);
+	
+  //Full name -- string (try to generate this using the previous two strings
+  String FullName = first + " " + last;
+  Serial.print("\n");
+  Serial.print(FullName);
+  
+  //Proper shoes -- bool
+  bool haveShoes = 1;
+  Serial.print("\n\n");
+  Serial.print(shoes);
+  
+  //Amount paid -- float or int (depending on quantity)
+  int dollarPayment = 5;
+  Serial.print("\n\n");
+  Serial.print(dollarPayment);
+  
+  float centsPayment = .75;
+  Serial.print("\n");
+  Serial.print(centsPayment);
   
 }
 
