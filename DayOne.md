@@ -322,7 +322,7 @@ void loop() {
 <img width="238" height="282" alt="image" src="https://github.com/user-attachments/assets/db0a4798-3f82-4c5d-897c-2ccc6076f113" />
 
 - _Diagram of Arduino program flow: Power on → setup() once → loop() repeats._  
-- _Side-by-side analogy: setup() = setting the stage, loop() = the performance repeating._
+- _Side-by-side example: setup() = setting the stage, loop() = the performance repeating._
 
 ---
 
