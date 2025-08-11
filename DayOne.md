@@ -610,7 +610,7 @@ void loop() {
 
 ###  Homework / Practice:
 - Review slides for the next days, to better understand the next concepts, a good grasp of today's lecture is needed. 
-
+- Download VS Code C++ Installer, Compiler
 ---
 
 **Next Up – Day 2:**
