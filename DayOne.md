@@ -163,7 +163,57 @@ Serial.print("\nIs this person allowed in?\t");
 Serial.print(isAllowedIn);
 
 ```
+### Completed Bouncer Example
 
+```cpp
+// C++ code
+//
+void setup()
+{
+  Serial.begin(9600); // open the serial port at 9600 bps:
+  
+  bool isAllowedIn;
+
+
+/*AND Boolean Example
+Bouncer checks the following*/
+
+bool onGuestList = 0; //guest list condition
+bool shoes = 1; // proper shoes condition
+isAllowedIn = onGuestList&&shoes; /*assign a new value to isAllowedIn using AND boolean operation*/ 
+
+//check the value of isAllowedIn
+Serial.print("\nIs this person allowed in?\t");
+Serial.print(isAllowedIn);
+ 
+  
+delay(1000);
+//OR Boolean Example
+
+int hasPaid = 20; //paying at the door condition
+bool money = hasPaid >= 30;
+isAllowedIn = onGuestList || money;/*assign a new value to isAllowedIn using OR boolean operation*/ 
+
+//check the value of isAllowedIn
+Serial.print("\nIs this person allowed in?\t");
+Serial.print(isAllowedIn);
+  
+//NOT Boolean Example
+
+bool backpack = 1;//backpack condition
+isAllowedIn = !backpack; /*assign a new value to isAllowedIn using NOT boolean operation*/ 
+
+//check the value of isAllowedIn
+Serial.print("\nIs this person allowed in?\t");
+Serial.print(isAllowedIn);
+  
+}
+
+void loop()
+{
+
+}
+```
 ---
 
 
