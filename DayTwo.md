@@ -111,6 +111,19 @@ Instead of having a variable for `led1`, `led2`, `led3`, you have one container 
 **Why important?**  
 They make it possible to do the same thing to many items without repeating code.
 
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/b27d06f3-4565-447a-bf5c-e7c41bcf815c" />
+
+Different Types of Arrays:
+
+<img width="477" height="102" alt="image" src="https://github.com/user-attachments/assets/e40798d3-592f-49b1-8109-795f7a61b55b" />
+
+#
+```cpp
+
+
+
+```
+
 ---
 
 ## 1.5 Strings — Handling Text
@@ -140,15 +153,6 @@ if (temp > 30) {
 }
 ```
 
-### FOR loop
-```cpp
-for (int i = 0; i < 3; i++) {
-  digitalWrite(13, HIGH);
-  delay(200);
-  digitalWrite(13, LOW);
-  delay(200);
-}
-```
 # 2. Loops — How to Write `for` and `while` (properly!)
 
 > Loops let your Arduino repeat actions **without** copy–pasting code.
@@ -184,7 +188,7 @@ for (int i = 0; i < 3; i++) {
 
 Walk through an array of pins (`0..n-1` indexing):
 ```cpp
-int leds[] = {3, 5, 6};
+int leds[] = {3, 5, 6}; //store pin numbers 3, 5, and 6 in array "leds"
 int n = 3;
 
 for (int i = 0; i < n; i++) {      // i = 0,1,2
