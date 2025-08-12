@@ -238,6 +238,22 @@ Your phone stores your name as a string in its contact list.
 **Why important?**  
 They let Arduino handle words, sentences, and messages for displays, serial communication, or Morse code.
 
+
+```cpp
+//Various valid string declarations
+char Str1[15];
+char Str2[8] = {'a', 'r', 'd', 'u', 'i', 'n', 'o'};
+char Str3[8] = {'a', 'r', 'd', 'u', 'i', 'n', 'o', '\0'};
+char Str4[] = "arduino";
+char Str5[8] = "arduino";
+char Str6[15] = "arduino";
+
+String stringOne = "Hello String";                    // using a constant String
+String stringOne = String('a');                       // converting a constant char into a String
+String stringTwo = String("This is a string");        // converting a constant string into a String object
+String stringOne = String(stringTwo + " with more");  // concatenating two strings
+    
+```
 ---
 
 ## 1.6 Very Basic Code Examples
