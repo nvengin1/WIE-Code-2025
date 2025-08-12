@@ -156,13 +156,21 @@ Loops save time and make code flexible: change one number, and your Arduino coul
 ---
 
 
-##Try it! 
+### **Mini Breakout Activity 1 – Simple Button Control**
+**Goal:** Press the pushbutton to turn ON an LED, release to turn it OFF.  
+- Use `digitalRead()` to detect button press.
+- Use `digitalWrite()` to control the LED.
+- **Tip:** Try using both `INPUT` and `INPUT_PULLUP` modes to see the difference in logic.
 
-Now's your chance to practice these concepts with two quick activities.
+---
 
-### [Mini Breakout One](https://github.com/nvengin1/WIE-Code-2025/blob/main/Daily%20Lessons/DayTwo.md#activity-1--simple-button-control)
+### **Mini Breakout Activity 2 – If-Else LED Color Control**
+**Goal:** Two LEDs:  
+- If the button is pressed, the **red** LED turns ON and the **green** LED turns OFF.  
+- If not pressed, the **green** LED turns ON and the **red** LED turns OFF.  
+- This reinforces `if` vs. `else` control.
 
-
+--- 
 
 ## 1.3 Functions — Reusable Mini-Programs
 
@@ -424,7 +432,21 @@ for (int i = 0; i < 4; i++) {
   for (int i = 0; i < n; i++) { /* ... */ }
   ```
 
+### **Mini Breakout Activity 4 – For Loop LED Chase**
+**Goal:** Create a “running light” effect across **4 LEDs**.  
+- Use a `for` loop to turn them ON in sequence, then OFF in sequence.  
+- Add a small `delay()` so the movement is visible.  
+- **Bonus:** Make the chase reverse direction after reaching the last LED.
+
 ---
+
+### **Mini Breakout Activity 5 – While Loop Hold**
+**Goal:** While the button is pressed, make an LED blink rapidly.  
+- Use a `while` loop so blinking continues until the button is released.
+- **Tip:** Be careful to avoid locking the Arduino in the loop forever.
+
+---
+
 
 
 # 3. Coding Etiquette — Commenting, Indentation, Naming
@@ -746,23 +768,7 @@ These challenges are designed so you can complete them in TinkerCAD, using an Ar
 
 ---
 
-### **Activity 1 – Simple Button Control**
-**Goal:** Press the pushbutton to turn ON an LED, release to turn it OFF.  
-- Use `digitalRead()` to detect button press.
-- Use `digitalWrite()` to control the LED.
-- **Tip:** Try using both `INPUT` and `INPUT_PULLUP` modes to see the difference in logic.
-
----
-
-### **Activity 2 – If-Else LED Color Control**
-**Goal:** Two LEDs:  
-- If the button is pressed, the **red** LED turns ON and the **green** LED turns OFF.  
-- If not pressed, the **green** LED turns ON and the **red** LED turns OFF.  
-- This reinforces `if` vs. `else` control.
-
----
-
-### **Activity 3 – If-Else-If Pattern Challenge**
+### **Activity 1 – If-Else-If Pattern Challenge**
 **Goal:**  
 - Use **three LEDs** (red, yellow, green).  
 - Press the button **once** → only red LED ON.  
@@ -773,22 +779,7 @@ These challenges are designed so you can complete them in TinkerCAD, using an Ar
 
 ---
 
-### **Activity 4 – For Loop LED Chase**
-**Goal:** Create a “running light” effect across **4 LEDs**.  
-- Use a `for` loop to turn them ON in sequence, then OFF in sequence.  
-- Add a small `delay()` so the movement is visible.  
-- **Bonus:** Make the chase reverse direction after reaching the last LED.
-
----
-
-### **Activity 5 – While Loop Hold**
-**Goal:** While the button is pressed, make an LED blink rapidly.  
-- Use a `while` loop so blinking continues until the button is released.
-- **Tip:** Be careful to avoid locking the Arduino in the loop forever.
-
----
-
-### **Activity 6 – Morse Code Button Press**
+### **Activity 2 – Morse Code Button Press**
 **Goal:**  
 - Use the **built-in LED** to flash “SOS” in Morse code (`... --- ...`).  
 - Button press starts the sequence; releasing stops it.  
@@ -796,7 +787,7 @@ These challenges are designed so you can complete them in TinkerCAD, using an Ar
 
 ---
 
-### **Activity 7 – The Pushbutton Memory Game**
+### **Activity 3 – The Pushbutton Memory Game**
 **Goal:**  
 - Arduino shows a sequence of LEDs lighting up (like Simon Says).  
 - Use `for` loops to create the sequence.  
@@ -805,7 +796,7 @@ These challenges are designed so you can complete them in TinkerCAD, using an Ar
 
 ---
 
-### **Activity 8 – Button + LED Dimming**
+### **Activity 4 – Button + LED Dimming**
 **Goal:**  
 - Connect an LED to a PWM pin (like Pin 9).  
 - Each button press increases LED brightness by 50 (0–255 scale).  
