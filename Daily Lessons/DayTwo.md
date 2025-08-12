@@ -155,6 +155,7 @@ Loops save time and make code flexible: change one number, and your Arduino coul
 
 ---
 
+<img width="50" height="50" alt="image" src="https://github.com/user-attachments/assets/fb1a2216-e5be-4063-8e31-8ff09c92fde1" />
 
 ### **Mini Breakout Activity 1 – Simple Button Control**
 **Goal:** Press the pushbutton to turn ON an LED, release to turn it OFF.  
@@ -163,6 +164,7 @@ Loops save time and make code flexible: change one number, and your Arduino coul
 - **Tip:** Try using both `INPUT` and `INPUT_PULLUP` modes to see the difference in logic.
 
 ---
+<img width="50" height="50" alt="image" src="https://github.com/user-attachments/assets/fb1a2216-e5be-4063-8e31-8ff09c92fde1" />
 
 ### **Mini Breakout Activity 2 – If-Else LED Color Control**
 **Goal:** Two LEDs:  
@@ -431,6 +433,7 @@ for (int i = 0; i < 4; i++) {
   // ✅ use i < n  (0..2)
   for (int i = 0; i < n; i++) { /* ... */ }
   ```
+<img width="50" height="50" alt="image" src="https://github.com/user-attachments/assets/fb1a2216-e5be-4063-8e31-8ff09c92fde1" />
 
 ### **Mini Breakout Activity 4 – For Loop LED Chase**
 **Goal:** Create a “running light” effect across **4 LEDs**.  
@@ -439,6 +442,8 @@ for (int i = 0; i < 4; i++) {
 - **Bonus:** Make the chase reverse direction after reaching the last LED.
 
 ---
+
+<img width="50" height="50" alt="image" src="https://github.com/user-attachments/assets/fb1a2216-e5be-4063-8e31-8ff09c92fde1" />
 
 ### **Mini Breakout Activity 5 – While Loop Hold**
 **Goal:** While the button is pressed, make an LED blink rapidly.  
@@ -760,6 +765,8 @@ Wire the pushbutton so one leg is to **Pin 2**, the opposite leg is to **GND**.
 
 
 ---
+
+<img width="50" height="50" alt="image" src="https://github.com/user-attachments/assets/fb1a2216-e5be-4063-8e31-8ff09c92fde1" />
 
 ## 6. Breakout Activities (TinkerCAD)
 
