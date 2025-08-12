@@ -85,6 +85,7 @@ By the end of today, you’ll be able to:
 **What are they?**  
 Conditionals are "decision points" in your code — moments where the program must choose between two or more paths based on what’s happening.
 
+We implement Boolean operations to evaluate and make decisions.
  
 Imagine you’re at a crosswalk:  
 - **If** the light is green → you walk.  
@@ -101,6 +102,42 @@ Think about an automatic door:
 
 **Why important?**  
 Without decisions, Arduino would just run the same fixed script forever — no interactivity.
+
+```cpp
+//if, elseif, else structure
+if (condition1) {
+      // do Thing A
+    }
+    else if (condition2) {
+      // do Thing B
+    }
+    else {
+      // do Thing C
+    }
+
+
+//Example
+if (temperature >= 70) {
+      // Danger! Shut down the system.
+    }
+    else if (temperature >= 60) { // 60 <= temperature < 70
+      // Warning! User attention required.
+    }
+    else { // temperature < 60
+      // Safe! Continue usual tasks.
+    }
+```
+
+**Examples of conditions:**
+
+These will always evaluate to 0 or 1, depending on whether the condition is true or false. This means conditions are always boolean expressions.
+
+* x == y (x is equal to y)
+* x != y (x is not equal to y)
+* x < y (x is less than y)
+* x > y (x is greater than y
+* x <= y (x is less than or equal to y)
+* x >= y (x is greater than or equal to y)
 
 ---
 
@@ -130,6 +167,29 @@ Think about a TV remote’s volume button — it’s the same internal steps eve
 **Why important?**  
 Functions keep code organized, reusable, and easier to fix.
 
+<img width="704" height="312" alt="image" src="https://github.com/user-attachments/assets/f5fedae4-8857-4e92-8b95-cf6f63065bc2" />
+
+```cpp
+//Super simple function example
+
+int addOne(int num)
+{
+int newNum = num + 1; //adds 1 to parameter num and assigns to returned variable
+return newNum;
+}
+
+int number = addOne(4)
+
+Serial.print("\n\n");
+Serial.print(number);
+
+```
+
+Built-in Arduino Functions:
+
+<img width="613" height="305" alt="{DC087E25-652C-45A1-A12C-ACF4DDAB1BE7}" src="https://github.com/user-attachments/assets/ec411841-fd56-4e02-bdcd-f1fa9610e3db" />
+
+
 ---
 
 ## 1.4 Arrays — Keeping Many Things in One Box
@@ -146,14 +206,21 @@ They make it possible to do the same thing to many items without repeating code.
 
 <img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/b27d06f3-4565-447a-bf5c-e7c41bcf815c" />
 
-Different Types of Arrays:
-
-<img width="477" height="102" alt="image" src="https://github.com/user-attachments/assets/e40798d3-592f-49b1-8109-795f7a61b55b" />
-
-#
 ```cpp
+//Array Examples
+// Declare an array of a given length without initializing the values:
+int myInts[6];
 
+// Declare an array without explicitly choosing a size (the compiler
+// counts the elements and creates an array of the appropriate size):
+int myPins[] = {2, 4, 8, 3, 6, 4};
 
+// Declare an array of a given length and initialize its values:
+int mySensVals[5] = {2, 4, -8, 3, 2};
+
+// When declaring an array of type char, you'll need to make it longer
+// by one element to hold the required the null termination character:
+char message[6] = "hello";
 
 ```
 
