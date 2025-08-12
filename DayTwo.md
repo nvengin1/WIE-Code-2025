@@ -2,6 +2,39 @@
 
 > **Welcome back!**  
 > Yesterday we explored how to talk to your Arduino’s pins and make them act.  
+
+
+## Mini Review of Day One
+
+### Arduino default loops -- void setup () and void loop()
+**void setup()**
+
+Executes only once when the Arduino board powers on or resets.
+Initialization tasks that must occur at the beginning of the program.
+* Setting pin modes (e.g., pinMode(pin, OUTPUT) or pinMode(pin, INPUT)).
+* Initializing serial communication (e.g., Serial.begin(9600)).
+* Setting up libraries or sensors.
+
+**void loop()**
+
+Executes repeatedly after void setup() has finished.
+Contains the main logic of the program, where the ongoing actions and operations are performed.
+The code within void loop() runs continuously, allowing for tasks like:
+* Reading sensor data.
+* Controlling actuators (e.g., turning LEDs on/off, controlling motors).
+* Implementing control algorithms.
+
+### Arduino Pins
+
+<img width="800" height="650" alt="image" src="https://github.com/user-attachments/assets/44c98db7-a4d5-4994-80ff-3a94c5964e9f" />
+
+Three main I/O pin types on Arduino Uno: 
+* 6 Analog Input pins (A0–A5) – read varying voltage values for sensors
+* 14 Digital I/O pins – can read or send ON/OFF signals (HIGH/LOW)
+* Of the 14 Digital I/O pins, 6 pins (3, 5, 6, 9, 10, and 11) support PWM
+
+
+****
 > Today, we’re going beyond simply turning things on and off — we’ll learn how to make your Arduino **think, decide, repeat tasks, and stay organized**.
 
 ---
