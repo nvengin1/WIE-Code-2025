@@ -106,26 +106,26 @@ Without decisions, Arduino would just run the same fixed script forever — no i
 ```cpp
 //if, elseif, else structure
 if (condition1) {
-      // do Thing A
-    }
-    else if (condition2) {
-      // do Thing B
-    }
-    else {
-      // do Thing C
-    }
+  // do Thing A
+}
+else if (condition2) {
+  // do Thing B
+}
+else {
+  // do Thing C
+}
 
 
 //Example
 if (temperature >= 70) {
-      // Danger! Shut down the system.
-    }
-    else if (temperature >= 60) { // 60 <= temperature < 70
-      // Warning! User attention required.
-    }
-    else { // temperature < 60
-      // Safe! Continue usual tasks.
-    }
+ // Danger! Shut down the system.
+}
+else if (temperature >= 60) { // 60 <= temperature < 70
+  // Warning! User attention required.
+}
+else { // temperature < 60
+  // Safe! Continue usual tasks.
+}
 ```
 
 **Examples of conditions:**
