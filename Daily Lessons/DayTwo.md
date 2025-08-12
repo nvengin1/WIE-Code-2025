@@ -250,12 +250,6 @@ They let Arduino handle words, sentences, and messages for displays, serial comm
 
 ```cpp
 //Various valid string declarations
-char Str1[15];
-char Str2[8] = {'a', 'r', 'd', 'u', 'i', 'n', 'o'};
-char Str3[8] = {'a', 'r', 'd', 'u', 'i', 'n', 'o', '\0'};
-char Str4[] = "arduino";
-char Str5[8] = "arduino";
-char Str6[15] = "arduino";
 
 String stringOne = "Hello String";                    // using a constant String
 String stringOne = String('a');                       // converting a constant char into a String
