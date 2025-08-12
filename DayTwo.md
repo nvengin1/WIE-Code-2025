@@ -26,7 +26,7 @@ The code within void loop() runs continuously, allowing for tasks like:
 
 ### Arduino Pins
 
-<img width="400" height="325" alt="image" src="https://github.com/user-attachments/assets/44c98db7-a4d5-4994-80ff-3a94c5964e9f" />
+<img width="600" height="490" alt="image" src="https://github.com/user-attachments/assets/44c98db7-a4d5-4994-80ff-3a94c5964e9f" />
 
 Three main I/O pin types on Arduino Uno: 
 * 6 Analog Input pins (A0–A5) – read varying voltage values for sensors
