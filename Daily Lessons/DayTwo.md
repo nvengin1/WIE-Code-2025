@@ -155,6 +155,15 @@ Loops save time and make code flexible: change one number, and your Arduino coul
 
 ---
 
+
+##Try it! 
+
+Now's your chance to practice these concepts with two quick activities.
+
+### [Mini Breakout One](https://github.com/nvengin1/WIE-Code-2025/blob/main/Daily%20Lessons/DayTwo.md#activity-1--simple-button-control)
+
+
+
 ## 1.3 Functions — Reusable Mini-Programs
 
 **What are they?**  
