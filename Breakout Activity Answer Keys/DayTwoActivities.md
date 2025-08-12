@@ -36,39 +36,7 @@ void loop() {
 
 ---
 
-## Activity 1 - Simple Button Control
 
-Steps
-Wire an LED to D9 with a resistor to GND.
-
-Wire button: D2 ↔ GND across the breadboard gap.
-
-Upload code.
-
-```cpp
-const int buttonPin = 2;
-const int ledPin    = 9;
-
-void setup() {
-  pinMode(buttonPin, INPUT_PULLUP); // default HIGH, pressed LOW
-  pinMode(ledPin, OUTPUT);
-}
-
-void loop() {
-  int pressed = (digitalRead(buttonPin) == LOW);
-  digitalWrite(ledPin, pressed ? HIGH : LOW);
-}
-```
-
-### How it works
-Internal pull-up keeps the pin HIGH until the button ties it to GND (LOW).
-
-We map LOW → ON, HIGH → OFF.
-
-If you want INPUT instead: add a 10 kΩ pull-down from D2→GND and wire the button from D2→5V. Then use pinMode(buttonPin, INPUT); and change logic to pressed = (digitalRead(buttonPin) == HIGH);.
-
-
----
 
 ## Activity 2 - If-Else Color Control
 
@@ -81,18 +49,18 @@ Same button wiring as Activity 1.
 Upload code.
 
 ```cpp
-const int buttonPin = 2;
-const int redPin    = 9;
-const int greenPin  = 10;
+const int buttonPin = 2;   // to 5V, 10k pulldown to GND
+const int redPin    = 9;   // breadboard red LED
+const int greenPin  = 10;  // breadboard green LED
 
 void setup() {
-  pinMode(buttonPin, INPUT_PULLUP);
+  pinMode(buttonPin, INPUT);  // external pulldown
   pinMode(redPin, OUTPUT);
   pinMode(greenPin, OUTPUT);
 }
 
 void loop() {
-  bool pressed = (digitalRead(buttonPin) == LOW);
+  bool pressed = (digitalRead(buttonPin) == HIGH); // active-HIGH
 
   if (pressed) {
     digitalWrite(redPin, HIGH);
@@ -102,6 +70,7 @@ void loop() {
     digitalWrite(greenPin, HIGH);
   }
 }
+
 ```
 
 ---
