@@ -11,7 +11,34 @@ We’ll cover:
 - **Potentiometers** – simple but powerful input devices that give variable values (like a volume knob).
 
 ---
+## Mini Review of Day One
 
+### If statements
+
+Block Logic Diagram
+
+<img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/8d567855-a5cf-418c-b0ad-f31ba1e5a46f" />
+
+Code Example
+
+<img width="899" height="279" alt="{EA514AC0-49CC-4D66-9BDB-29A4A93C2908}" src="https://github.com/user-attachments/assets/8866761f-fefa-4d30-a20d-1907fe4c6682" />
+
+---
+
+### For and While Loops
+While Loop
+
+<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/0a9f1697-865a-43bc-95c1-99ed72685f85" />
+
+For Loops
+
+<img width="370" height="400" alt="image" src="https://github.com/user-attachments/assets/53ce1e63-df4b-4316-b3d0-123ba6065ef7" />
+
+Code Example
+
+<img width="449" height="567" alt="image" src="https://github.com/user-attachments/assets/2b713cc5-e03a-46f8-9564-41574ecb1e69" />
+
+---
 ## 1. Libraries
 
 If your Arduino is the **brain** and wiring is the **nervous system**, then **libraries** are the *superpowers* you can instantly add.  
