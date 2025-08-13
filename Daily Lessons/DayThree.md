@@ -340,9 +340,7 @@ You’ve probably used one today without realizing it—volume knobs, light dimm
 **Core principle:**  
 A potentiometer changes its **resistance** as you rotate its shaft or slider. This changes how much **voltage** appears at its output terminal, based on **Ohm’s Law**:
 
-\[
-V = I \times R
-\]
+$V = I \times R$
 
 **Construction:**
 - Inside is a **resistive track** (often made of carbon or conductive plastic).
