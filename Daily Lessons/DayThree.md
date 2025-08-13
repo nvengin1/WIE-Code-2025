@@ -242,6 +242,8 @@ If the round-trip took **2000 µs**, the calculation would be:
 
 ### 3.2 Understanding TRIG and ECHO Pins
 
+<img width="351" height="275" alt="image" src="https://github.com/user-attachments/assets/a612906d-ae3e-4298-90fe-d0bca8711680" />
+
 The HC-SR04 has **four pins**:  
 1. **VCC** — Power (5V)  
 2. **GND** — Ground (0V)  
@@ -264,6 +266,7 @@ The HC-SR04 has **four pins**:
 ---
 
 ### 3.3 How Arduino Receives Data
+<img width="450" height="225" alt="image" src="https://github.com/user-attachments/assets/8fa877aa-bbe4-4912-8674-a115fbd3422c" />
 
 - **Step 1:** Arduino sends HIGH to TRIG for 10 µs → sensor emits sound.
 - **Step 2:** ECHO goes HIGH, and the Arduino starts counting microseconds.
