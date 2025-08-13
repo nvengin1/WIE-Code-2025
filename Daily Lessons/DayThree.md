@@ -229,6 +229,9 @@ Instead of light, it sends out an **ultrasonic pulse** (a sound too high-pitched
 
 Because the sound has to travel **to the object and back**, the formula for distance is:
 
+<img width="288" height="128" alt="image" src="https://github.com/user-attachments/assets/af89d838-fd54-417c-ae28-a051e1415a12" />
+
+
 \[
 \text{distance\_cm} = \frac{\text{time\_µs} \times 0.0343}{2}
 \]
