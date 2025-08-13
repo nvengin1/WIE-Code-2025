@@ -168,6 +168,24 @@ Even though most hobby servos rotate only 180°, they are extremely useful for:
 
 ### Demo:
 
+<img width="50" height="50" alt="image" src="https://github.com/user-attachments/assets/5bc35294-32f0-4ec3-bd18-d9de2f612fb6" />
+
+### Mini Breakout 1 – Servo Warm-Up
+**Goal:** Learn to move a servo to specific angles using the `Servo.h` library.
+
+**Instructions:**
+1. Connect a servo motor to Arduino pin **9** (signal), **5V** (Vcc), and **GND**.
+2. Include the `Servo.h` library.
+3. In `loop()`, move the servo to:
+   - 0°
+   - 90°
+   - 180°
+   - back to 0°
+4. Add a `delay(1000)` between each move.
+
+**Stretch Goal:** Make the servo sweep smoothly from 0° to 180° using a `for` loop.
+
+
 ---
 
 ## 3. Ultrasonic Sensor (HC-SR04) — No Extra Library
@@ -325,6 +343,24 @@ By measuring that time and applying the speed of sound, you can accurately measu
 
 ## Demo
 
+<img width="50" height="50" alt="image" src="https://github.com/user-attachments/assets/5bc35294-32f0-4ec3-bd18-d9de2f612fb6" />
+
+## Mini Breakout 2 – Ultrasonic Distance Reader
+**Goal:** Measure distances with the HC-SR04 ultrasonic sensor and print to the Serial Monitor.
+
+**Instructions:**
+1. Connect **Trig** to Arduino pin **7**, **Echo** to pin **6**, **Vcc** to 5V, **GND** to GND.
+2. Write code to:
+   - Send a 10µs pulse from Trig.
+   - Measure the Echo return time.
+   - Convert the time into **distance in cm** using:
+     \[
+     \text{Distance} = \frac{\text{Time} \times 0.0343}{2}
+     \]
+3. Print the distance every 500 ms in the Serial Monitor.
+
+**Stretch Goal:** Display “Object too close!” when distance < 10 cm.
+
 ---
 
 
@@ -447,52 +483,9 @@ void loop() {
 
 ## Demo
 
----
+<img width="50" height="50" alt="image" src="https://github.com/user-attachments/assets/5bc35294-32f0-4ec3-bd18-d9de2f612fb6" />
 
-# 5. Breakout Activities 
-
-Now that we’ve learned **libraries**, **servo motors**, **ultrasonic sensors**, and **potentiometers**, it’s time to practice!  
-We’ll start with **small, focused challenges** and build toward **multi-component mini-projects**.  
-All activities will be simulated in **TinkerCAD Circuits**.
-
----
-
-## Activity 1 – Servo Warm-Up
-**Goal:** Learn to move a servo to specific angles using the `Servo.h` library.
-
-**Instructions:**
-1. Connect a servo motor to Arduino pin **9** (signal), **5V** (Vcc), and **GND**.
-2. Include the `Servo.h` library.
-3. In `loop()`, move the servo to:
-   - 0°
-   - 90°
-   - 180°
-   - back to 0°
-4. Add a `delay(1000)` between each move.
-
-**Stretch Goal:** Make the servo sweep smoothly from 0° to 180° using a `for` loop.
-
----
-
-## Activity 2 – Ultrasonic Distance Reader
-**Goal:** Measure distances with the HC-SR04 ultrasonic sensor and print to the Serial Monitor.
-
-**Instructions:**
-1. Connect **Trig** to Arduino pin **7**, **Echo** to pin **6**, **Vcc** to 5V, **GND** to GND.
-2. Write code to:
-   - Send a 10µs pulse from Trig.
-   - Measure the Echo return time.
-   - Convert the time into **distance in cm** using:
-     \[
-     \text{Distance} = \frac{\text{Time} \times 0.0343}{2}
-     \]
-3. Print the distance every 500 ms in the Serial Monitor.
-
-**Stretch Goal:** Display “Object too close!” when distance < 10 cm.
-
----
-
-## Activity 3 – Potentiometer Voltage Monitor
+## Mini Breakout 3 – Potentiometer Voltage Monitor
 **Goal:** Read a potentiometer and display voltage values.
 
 **Instructions:**
@@ -505,7 +498,19 @@ All activities will be simulated in **TinkerCAD Circuits**.
 
 ---
 
-## Activity 4 – Servo Controlled by Potentiometer
+---
+
+# 5. Breakout Activities 
+
+Now that we’ve learned **libraries**, **servo motors**, **ultrasonic sensors**, and **potentiometers**, it’s time to practice!  
+We’ll start with **small, focused challenges** and build toward **multi-component mini-projects**.  
+All activities will be simulated in **TinkerCAD Circuits**.
+
+---
+
+<img width="50" height="50" alt="image" src="https://github.com/user-attachments/assets/5bc35294-32f0-4ec3-bd18-d9de2f612fb6" />
+
+## Servo Controlled by Potentiometer
 **Goal:** Control servo position using potentiometer input.
 
 **Instructions:**
@@ -516,7 +521,9 @@ All activities will be simulated in **TinkerCAD Circuits**.
 
 ---
 
-## Activity 5 – Distance-Activated Servo Gate
+<img width="50" height="50" alt="image" src="https://github.com/user-attachments/assets/5bc35294-32f0-4ec3-bd18-d9de2f612fb6" />
+
+## Distance-Activated Servo Gate
 **Goal:** Open a gate (servo) when an object is detected nearby.
 
 **Instructions:**
