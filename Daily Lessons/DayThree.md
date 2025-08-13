@@ -566,18 +566,47 @@ Potentiometer: one outer pin → 5V, the other outer pin → GND, middle (wiper)
 LED: D9 (PWM) → 220–330 Ω resistor → LED anode, LED cathode → GND
 
 ```cpp
-const int potPin = A0;
-const int ledPin = 9; // PWM-capable pin
+/* =====================================================
+ POTENTIOMETER -> PWM BRIGHTNESS (BEGINNER EXAMPLE)
+ Goal: Read the knob on A0 (0..1023) and convert it to
+       a PWM brightness number for the LED on D9 (0..255).
+
+ WIRING:
+ - Potentiometer: one outer pin -> 5V, other outer pin -> GND, middle pin -> A0
+ - LED: D9 (PWM) -> 220–330 Ω resistor -> LED anode; LED cathode -> GND
+ ===================================================== */
+
+int knobPin = A0;   // A0 is an ANALOG INPUT pin (goes to the ADC)
+int ledPin  = 9;    // D9 is a PWM OUTPUT pin (has a "~" on the board)
 
 void setup() {
-  pinMode(ledPin, OUTPUT);
+  pinMode(ledPin, OUTPUT);   // we will control this LED with analogWrite()
+  Serial.begin(9600);        // open Serial Monitor at 9600 baud to see values
 }
 
 void loop() {
-  int potValue = analogRead(potPin); // 0–1023
-  int brightness = map(potValue, 0, 1023, 0, 255); // scale to PWM range
+  // 1) Read the knob position as a number 0..1023 from the ADC on A0
+  int knobReading = analogRead(knobPin);   // 0 (min) … 1023 (max)
 
-  analogWrite(ledPin, brightness);
+  // 2) Convert that to a PWM brightness number 0..255
+  int knobPWM = knobReading / 4;           // 0..255
+
+
+  // 3) Send the PWM value to the LED on D9
+  analogWrite(ledPin, knobPWM);
+
+  // 4) Also show the real voltage at A0, for learning (0.00..5.00 V)
+  float knobVoltage = (knobReading / 1023.0) * 5.0;
+
+  // 5) Print everything in one line so students can see the conversion
+  Serial.print("Knob Reading (0..1023): ");
+  Serial.print(knobReading);
+  Serial.print("  |  Voltage (0..5V): ");
+  Serial.print(knobVoltage, 2);  // two decimals, e.g., 2.47
+  Serial.print(" V  |  PWM (0..255): ");
+  Serial.println(knobPWM);
+
+  delay(120); // small pause so the Serial Monitor is readable
 }
 ```
 
