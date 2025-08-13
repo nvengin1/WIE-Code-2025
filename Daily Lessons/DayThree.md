@@ -389,6 +389,9 @@ By measuring that time and applying the speed of sound, you can accurately measu
 
 ## 4. Potentiometer — Variable Resistor Basics
 
+<img width="520" height="345" alt="image" src="https://github.com/user-attachments/assets/98b1bf58-b43e-419e-b48f-4906ab5b3072" />
+
+
 A **potentiometer** (often called a “pot”) is a **three-terminal variable resistor**.  
 You’ve probably used one today without realizing it—volume knobs, light dimmers, joystick controls, and even some touch-sensitive lamps all use potentiometers.
 
@@ -398,6 +401,9 @@ You’ve probably used one today without realizing it—volume knobs, light dimm
 
 **Core principle:**  
 A potentiometer changes its **resistance** as you rotate its shaft or slider. This changes how much **voltage** appears at its output terminal, based on **Ohm’s Law**:
+
+<img width="424" height="312" alt="image" src="https://github.com/user-attachments/assets/b6ee7376-08bb-4d77-9098-a1cde429bd62" />
+
 
 $V = I \times R$
 
@@ -444,10 +450,16 @@ Potentiometers are everywhere in electronics:
 
 ### 4.4 Basic Wiring with Arduino
 
+<img width="496" height="255" alt="image" src="https://github.com/user-attachments/assets/cf22dfec-045a-4570-891c-08c53a375741" />
+
+
 **Pins:**
 - **Left pin** → 5V  
 - **Right pin** → GND  
 - **Middle pin (wiper)** → Arduino **analog input** (e.g., A0)
+
+<img width="489" height="428" alt="image" src="https://github.com/user-attachments/assets/077ae2f4-8209-4129-bd2a-fc3e54b39427" />
+
 
 ---
 
@@ -475,9 +487,83 @@ void loop() {
 
 ---
 
+### Reading values of the potentiometer to display on the serial monitor
+
+```cpp
+// ================================================
+// POTENTIOMETER → SERIAL MONITOR (VOLT METER)
+// Shows: knobReading (0..1023) and knobVoltage (0.00..5.00 V)
+//
+// WIRING:
+// - Pot outer pins: 5V and GND
+// - Pot middle pin (wiper): A0
+//
+// WHY 0..1023?
+// - Arduino Uno uses a 10-bit ADC (Analog-to-Digital Converter).
+// - 10-bit = 2^10 = 1024 possible steps: 0 through 1023.
+//   * 0    ≈ 0.00 V at A0
+//   * 1023 ≈ 5.00 V at A0 (default reference)
+// - Each step is about 5.00 V / 1023 ≈ 0.00488 V (4.88 mV).
+//
+// HOW WE CONVERT TO VOLTS:
+// knobVoltage = (knobReading / 1023.0) * 5.0
+//   (Divide by 1023.0 to keep decimals, then multiply by 5.0 V)
+//
+// OPEN: Tools → Serial Monitor (set 9600 baud).
+// ================================================
+
+int knobPin = A0;  // middle pin of the potentiometer
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int   knobReading = analogRead(knobPin);        // 0..1023
+  float knobVoltage = (knobReading / 1023.0) * 5.0; // 0.00..5.00 V
+
+  Serial.print("Knob Reading: ");
+  Serial.print(knobReading);        // 0..1023
+  Serial.print("  |  Voltage: ");
+  Serial.print(knobVoltage, 2);     // show 2 decimals (e.g., 2.47)
+  Serial.println(" V");
+
+  delay(150); // small pause so the text is readable
+}
+
+```
+---
+
 ### 4.6 Example: Controlling LED Brightness
 
-We can map potentiometer readings directly to **PWM** for brightness control.
+**Big idea:**
+We read the knob’s position using analogRead() on an A pin (like A0). We set the LED brightness using analogWrite() on a PWM pin (like D9). The knob gives us numbers 0..1023. The LED brightness wants 0..255. We’ll just divide by 4 to convert (because 1023 ÷ 4 ≈ 255).
+
+**Why “A” pins?**
+Pins A0–A5 are analog inputs. They connect to the Arduino’s Analog-to-Digital Converter (ADC). analogRead(A0) measures the voltage on A0 (0 to 5 V) and returns a number 0..1023. On Uno, A0–A5 can also act as normal digital pins, but only A0–A5 can do analogRead().
+
+**Why PWM pins for the LED?**
+analogWrite() on Uno is not real analog; it’s PWM — fast ON/OFF that looks like dimming to your eyes. PWM only works on specific digital pins labeled with ~ (on Uno: 3, 5, 6, 9, 10, 11). So we put the LED on D9 (a PWM pin) and call analogWrite(9, value);.
+
+**Wiring**
+Potentiometer: one outer pin → 5V, the other outer pin → GND, middle (wiper) → A0. LED: D9 (PWM) → 220–330 Ω resistor → LED anode, LED cathode → GND
+
+**Big idea:**
+We read the knob’s position using analogRead() on an A pin (like A0). We set the LED brightness using analogWrite() on a PWM pin (like D9). The knob gives us numbers 0..1023. The LED brightness wants 0..255. We’ll just divide by 4 to convert (because 1023 ÷ 4 ≈ 255).
+
+Why “A” pins?
+
+Pins A0–A5 are analog inputs. They connect to the Arduino’s Analog-to-Digital Converter (ADC). analogRead(A0) measures the voltage on A0 (0 to 5 V) and returns a number 0..1023. On Uno, A0–A5 can also act as normal digital pins, but only A0–A5 can do analogRead().
+
+Why PWM pins for the LED?
+analogWrite() on Uno is not real analog; it’s PWM — fast ON/OFF that looks like dimming to your eyes.
+PWM only works on specific digital pins labeled with ~ (on Uno: 3, 5, 6, 9, 10, 11).
+So we put the LED on D9 (a PWM pin) and call analogWrite(9, value);.
+
+Wiring
+
+Potentiometer: one outer pin → 5V, the other outer pin → GND, middle (wiper) → A0
+LED: D9 (PWM) → 220–330 Ω resistor → LED anode, LED cathode → GND
 
 ```cpp
 const int potPin = A0;
@@ -519,7 +605,6 @@ void loop() {
    Raw: 512 | Voltage: 2.50V
    ```
 
----
 
 ---
 
