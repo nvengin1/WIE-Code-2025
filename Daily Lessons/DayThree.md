@@ -466,18 +466,18 @@ Potentiometers are everywhere in electronics:
 ### 4.5 Minimal Code Example
 
 ```cpp
-const int potPin = A0; // Middle pin of potentiometer
+int potPin = A0; // Middle pin of potentiometer
 
 void setup() {
   Serial.begin(9600); // For viewing readings
 }
 
 void loop() {
-  int potValue = analogRead(potPin); // 0 to 1023
+  int wiper = analogRead(wiper); // 0 to 1023
   float voltage = (potValue / 1023.0) * 5.0; // Convert to volts
 
-  Serial.print("Raw: ");
-  Serial.print(potValue);
+  Serial.print("Wiper Value: ");
+  Serial.print(wiper);
   Serial.print(" | Voltage: ");
   Serial.println(voltage);
 
