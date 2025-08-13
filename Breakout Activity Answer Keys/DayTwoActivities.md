@@ -395,39 +395,40 @@ Button as before.
 Upload code.
 
 ```cpp
-const int buttonPin = 2;
-const int pwmPin    = 9;
+// Button + LED Dimming (PWM on pin 9)
+// Press button to step brightness: 0,50,100,150,200,250,0,...
 
-int brightness = 0;                 // 0..255
-int lastState  = HIGH;
-unsigned long lastChange = 0;
-const unsigned long debounceMs = 25;
+int ledPin = 9;        // PWM pin
+int buttonPin = 2;     //  button
 
-void apply(){
-  analogWrite(pwmPin, brightness);
+int brightness = 0;    // 0..255
+int stepSize = 50;     // amount to increase each press
+int lastButton = 0;    // LOW when released (with pulldown)
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  pinMode(buttonPin, INPUT);   // external 10k pulldown
+
+  analogWrite(ledPin, brightness); // start OFF
 }
 
-void setup(){
-  pinMode(buttonPin, INPUT_PULLUP);
-  pinMode(pwmPin, OUTPUT);
-  apply();
-}
+void loop() {
+  int reading = digitalRead(buttonPin);
 
-void loop(){
-  int r = digitalRead(buttonPin);
-  unsigned long now = millis();
-
-  if (r != lastState && (now - lastChange) > debounceMs){
-    lastChange = now;
-    lastState  = r;
-
-    if (r == LOW){ // falling edge = pressed
-      brightness += 50;            // step size
-      if (brightness > 255) brightness = 0;
-      apply();
+  // Count ONE press: look for LOW -> HIGH change
+  if (reading == HIGH && lastButton == LOW) {
+    brightness = brightness + stepSize;
+    if (brightness > 255) {
+      brightness = 0;          // wrap back to OFF
     }
+
+    analogWrite(ledPin, brightness);  // apply new brightness
+    delay(200);                       // simple debounce
   }
+
+  lastButton = reading; // remember for next loop
 }
+
 ```
 
 Notes:
