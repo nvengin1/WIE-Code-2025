@@ -34,9 +34,6 @@ For Loops
 
 <img width="370" height="400" alt="image" src="https://github.com/user-attachments/assets/53ce1e63-df4b-4316-b3d0-123ba6065ef7" />
 
-Code Example
-
-<img width="449" height="567" alt="image" src="https://github.com/user-attachments/assets/2b713cc5-e03a-46f8-9564-41574ecb1e69" />
 
 ---
 ## 1. Libraries
