@@ -207,8 +207,9 @@ Even though most hobby servos rotate only 180°, they are extremely useful for:
    - back to 0°
 4. Add a `delay(1000)` between each move.
 
-**Stretch Goal:** Make the servo sweep smoothly from 0° to 180° using a `for` loop.
+**Stretch Goal:** Make the servo sweep smoothly from 0° to 180° and then back to 0° using a `for` loop.
 
+** Hint: you might have to use two for loops!
 
 ---
 
