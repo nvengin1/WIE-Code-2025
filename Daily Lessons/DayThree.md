@@ -532,6 +532,10 @@ void loop() {
 }
 
 ```
+
+<img width="1619" height="674" alt="image" src="https://github.com/user-attachments/assets/8e96f302-4455-4203-bdb4-d9dd302a832a" />
+
+
 ---
 
 ### 4.6 Example: Controlling LED Brightness
