@@ -798,7 +798,7 @@ These challenges are designed so you can complete them in TinkerCAD, using an Ar
 **Goal:**  
 - Arduino shows a sequence of LEDs lighting up (like Simon Says).  
 - Use `for` loops to create the sequence.  
-- Pressing the button at the right time “matches” the light, and Arduino responds with a success blink.  
+- Pressing the button at the right time “matches” the light, and Arduino responds with a successful blink (separate green LED).  
 - Keep it simple—just 2–3 steps for now.
 
 ---
