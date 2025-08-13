@@ -38,7 +38,7 @@ void loop() {
 
 
 
-## Activity 2 - If-Else Color Control
+## Activity 2/3 - If-Else Color Control
 
 
 Steps
@@ -105,60 +105,7 @@ void loop() {
 
 ```
 
----
 
-### Activity 3 - If-Else-If Pattern (count button presses)
-
-Key note: use edge detection (change from released - > pressed) + counter
-
- Steps
-LEDs: red D9, yellow D11, green D10.
-
-Button as before.
-
-Upload code.
-
-```cpp
-const int buttonPin = 2;
-const int redPin = 9, yellowPin = 11, greenPin = 10;
-
-int mode = 1;                 // 1=red, 2=yellow, 3=green
-int lastState = HIGH;         // last read of the button (INPUT_PULLUP)
-unsigned long lastChange = 0;
-const unsigned long debounceMs = 25;
-
-void showMode(int m){
-  digitalWrite(redPin,    m==1 ? HIGH : LOW);
-  digitalWrite(yellowPin, m==2 ? HIGH : LOW);
-  digitalWrite(greenPin,  m==3 ? HIGH : LOW);
-}
-
-void setup(){
-  pinMode(buttonPin, INPUT_PULLUP);
-  pinMode(redPin, OUTPUT);
-  pinMode(yellowPin, OUTPUT);
-  pinMode(greenPin, OUTPUT);
-  showMode(mode);
-}
-
-void loop(){
-  int reading = digitalRead(buttonPin);
-  unsigned long now = millis();
-
-  // detect stable change
-  if (reading != lastState && (now - lastChange) > debounceMs) {
-    lastChange = now;
-    lastState = reading;
-
-    // falling edge: HIGH->LOW means a press
-    if (reading == LOW) {
-      mode++;
-      if (mode > 3) mode = 1;
-      showMode(mode);
-    }
-  }
-}
-```
 ---
 
 ## Activity 4 - For Loop LED Chase
