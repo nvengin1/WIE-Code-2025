@@ -381,7 +381,7 @@ By measuring that time and applying the speed of sound, you can accurately measu
      \]
 3. Print the distance every 500 ms in the Serial Monitor.
 
-**Stretch Goal:** Display “Object too close!” when distance < 10 cm.
+**Stretch Goal:** Display “Object too close!” when distance < 40 cm.
 
 ---
 
