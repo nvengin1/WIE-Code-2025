@@ -49,25 +49,57 @@ Same button wiring as Activity 1.
 Upload code.
 
 ```cpp
-const int buttonPin = 2;   // to 5V, 10k pulldown to GND
-const int redPin    = 9;   // breadboard red LED
-const int greenPin  = 10;  // breadboard green LED
+// Pins
+int redLED    = 9;
+int yellowLED = 10;
+int greenLED  = 11;
+int buttonPin = 2;
+
+// 0 = red, 1 = yellow, 2 = green
+int mode = 0;
+int lastButton = 0;  // LOW when released (with pulldown)
 
 void setup() {
-  pinMode(buttonPin, INPUT);  // external pulldown
-  pinMode(redPin, OUTPUT);
-  pinMode(greenPin, OUTPUT);
+  pinMode(redLED, OUTPUT);
+  pinMode(yellowLED, OUTPUT);
+  pinMode(greenLED, OUTPUT);
+  pinMode(buttonPin, INPUT);   // using external 10k pulldown
+
+  // start on RED
+  digitalWrite(redLED, HIGH);
+  digitalWrite(yellowLED, LOW);
+  digitalWrite(greenLED, LOW);
 }
 
 void loop() {
-  bool pressed = (digitalRead(buttonPin) == HIGH); // active-HIGH
+  int reading = digitalRead(buttonPin);
 
-  if (pressed) {
-    digitalWrite(redPin, HIGH);
-    digitalWrite(greenPin, LOW);
-  } else {
-    digitalWrite(redPin, LOW);
-    digitalWrite(greenPin, HIGH);
+  // Count ONE press: look for LOW -> HIGH change
+  if (reading == HIGH && lastButton == LOW) {
+    mode = mode + 1;
+    if (mode > 2) {
+      mode = 0;   // wrap back to RED
+    }
+    delay(200);   // simple debounce so one press counts once
+  }
+
+  lastButton = reading;  // remember for next loop
+
+  // Show the current mode (exactly one LED on)
+  if (mode == 0) {
+    digitalWrite(redLED, HIGH);
+    digitalWrite(yellowLED, LOW);
+    digitalWrite(greenLED, LOW);
+  }
+  else if (mode == 1) {
+    digitalWrite(redLED, LOW);
+    digitalWrite(yellowLED, HIGH);
+    digitalWrite(greenLED, LOW);
+  }
+  else { // mode == 2
+    digitalWrite(redLED, LOW);
+    digitalWrite(yellowLED, LOW);
+    digitalWrite(greenLED, HIGH);
   }
 }
 
