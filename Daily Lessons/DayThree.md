@@ -231,6 +231,7 @@ Because the sound has to travel **to the object and back**, the formula for dist
 
 <img width="288" height="128" alt="image" src="https://github.com/user-attachments/assets/af89d838-fd54-417c-ae28-a051e1415a12" />
 
+
 <img width="397" height="308" alt="image" src="https://github.com/user-attachments/assets/be763bac-e63e-4fa6-b608-ca670da52083" />
 
 ---
@@ -376,9 +377,9 @@ By measuring that time and applying the speed of sound, you can accurately measu
    - Send a 10µs pulse from Trig.
    - Measure the Echo return time.
    - Convert the time into **distance in cm** using:
-     \[
-     \text{Distance} = \frac{\text{Time} \times 0.0343}{2}
-     \]
+    
+     <img width="190" height="140" alt="image" src="https://github.com/user-attachments/assets/af89d838-fd54-417c-ae28-a051e1415a12" />
+
 3. Print the distance every 500 ms in the Serial Monitor.
 
 **Stretch Goal:** Display “Object too close!” when distance < 40 cm.
