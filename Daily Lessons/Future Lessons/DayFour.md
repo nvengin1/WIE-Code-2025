@@ -6,6 +6,81 @@ If servos are great for precise angle control, **DC motors** are all about conti
 
 ---
 
+## Review of Previous Content
+
+### Ultrasonic Sensor (HC-SR04) — Physics → Wiring → Code
+
+**How it works (quick physics):**
+- Sends an ultrasonic **pulse** at **40 kHz** (transmitter).
+- Waits for the **echo** reflected from an object (receiver).
+- Measures **time of flight** in **microseconds (µs)**.
+- Converts time to distance using the speed of sound (~**0.0343 cm/µs**).
+- Divide by **2** because the pulse travels **to** the object and **back**.
+
+**Distance formula:**
+
+**Typical wiring:**
+- `VCC → 5V`
+- `GND → GND`
+- `TRIG → D9` (OUTPUT)
+- `ECHO → D10` (INPUT)
+
+**Minimal code (prints distance in cm):**
+
+```cpp
+// --- HC-SR04: distance in centimeters ---
+const int trigPin = 9;
+const int echoPin = 10;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+}
+
+void loop() {
+  // Trigger a 10 µs pulse
+  digitalWrite(trigPin, LOW);  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH); delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  // Measure echo pulse width (µs). Optional timeout prevents "hang".
+  unsigned long duration = pulseIn(echoPin, HIGH, 25000UL); // ~4+ m
+  if (duration == 0) {
+    Serial.println("No echo (timeout).");
+  } else {
+    float distance = (duration * 0.0343f) / 2.0f;
+    Serial.print("Distance: ");
+    Serial.print(distance, 1);
+    Serial.println(" cm");
+  }
+
+  delay(200);
+}
+```
+
+**Why the `f` at the end of numbers like `0.0343f`?**
+
+In C++, numbers with a decimal (like `0.0343`) are treated as **double** by default (a type of number that uses more memory and precision).  
+If you put an **`f`** at the end, it tells the compiler:  
+> "Make this a **float** instead of a double."
+
+Why use `float` here?
+- `float` uses less memory (4 bytes instead of 8).
+- Many Arduino math functions are optimized for `float`.
+- It avoids mixing `float` and `double` types, which can cause the Arduino to do extra work.
+
+**Example:**
+
+```cpp
+float speedOfSound = 0.0343f;  // centimeters per microsecond
+```
+
+
+
+
+---
+
 ## What You’ll Learn Today
 - **How DC Motors Work** – the basic physics of converting electrical energy into rotational motion.
 - **Motor Control** – how to regulate motor speed and direction using Arduino.
