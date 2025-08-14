@@ -579,7 +579,7 @@ Rule example:
 ---
 <img width="50" height="50" alt="image" src="https://github.com/user-attachments/assets/c53d4193-b18f-4810-a142-23deaf526a36" />
 
-## Breakout Activities Motors + Sensors \
+## Breakout Activities Motors + Sensors 
 
 > Use your existing motor + H-bridge setup. Keep wiring the same across activities.
 > The bullets below describe behavior; you will choose pins and write the code.
