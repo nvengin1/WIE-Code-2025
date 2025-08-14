@@ -502,8 +502,9 @@ void reverseMotors(int speedPWM) {
   - Fix: check **IN1/IN2** logic and truth table; verify wiring.
 
 ---
+<img width="50" height="50" alt="image" src="https://github.com/user-attachments/assets/7372e0b3-100f-4ccc-8208-2dc097de282f" />
 
-## Breakout Activity 
+## Breakout Activity One
 
 We have learned how to move forward (both motors going one direction) and move backwards (both motors spinning in the opposite direction). But how would we code our "robot cars" for turning?
 
