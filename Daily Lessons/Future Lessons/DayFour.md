@@ -245,6 +245,8 @@ DC motors are the **workhorses** of mobile robots. Unlike servos (which move to 
 - **Rotor/Armature (coil)** sits inside and spins when current flows.
 - **Commutator + Brushes** switch current direction through the coil as it spins, keeping torque in the same rotational direction.
 
+<img width="403" height="304" alt="image" src="https://github.com/user-attachments/assets/ccabbd34-809c-4c35-be4e-a45aa3e31c95" />
+
 **Key idea:** A current-carrying wire in a magnetic field experiences a **force** (Lorentz force). Repeating this around the rotor makes continuous rotation.
 
 ---
@@ -256,7 +258,9 @@ DC motors are the **workhorses** of mobile robots. Unlike servos (which move to 
 - **Arduino I/O pin limit:** ~20–40 mA per pin (tiny). **Never** power a motor directly from an Arduino pin.
 - **Arduino 5V pin:** can power sensors and small modules, **not** motors (you’ll brown-out/reset the board).
 
-**Conclusion:** Use a **separate motor power supply** (e.g., 6–9 V battery pack for TT gearmotors, or as specified by your motor) and a **motor driver** between Arduino and motor.
+**Conclusion:** Use a **separate motor power supply** (e.g., 6–9 V battery pack for motors, or as specified by your motor) and a **motor driver** between Arduino and motor.
+
+<img width="399" height="307" alt="image" src="https://github.com/user-attachments/assets/5fa16e47-3906-4b00-b24d-a415d394dbbc" />
 
 ---
 
@@ -275,149 +279,22 @@ Common options:
 **Back EMF:** Motors are inductors. When current changes fast, they “kick back” voltage.  
 Drivers include **flyback diodes** or internal protection to absorb these spikes.
 
----
+<img width="919" height="510" alt="image" src="https://github.com/user-attachments/assets/c88e2fcd-6400-48c8-b509-8a2d5515b0f2" />
 
-## 1.4 Typical Wiring Patterns
 
-### A) One motor, one direction (VERY simple, for learning)
-- **NPN transistor or N-channel MOSFET** as a switch (low-side).
-- **Flyback diode** across motor terminals (stripe to +V).
-- **PWM** from Arduino to the transistor’s gate/base via a resistor.
-- **External motor supply** → motor → transistor → GND.
-- **Common ground:** **Must** connect Arduino GND to motor power GND.
-
-> Use this when you only need **on/off or speed**, **not direction**.
-
-### B) Full H-Bridge (speed **and** direction)
-For two-pin direction control + one PWM enable:
-- Driver inputs: **IN1**, **IN2** (direction), **ENA** (speed PWM)  
-- Motor output: **OUT1/OUT2** to the motor  
-- Power: **+VM** (motor voltage), **GND** (motor GND), **+5V** (logic supply, depending on board)  
-- **Common ground** between Arduino and motor supply is essential.
-
-**Direction truth table (typical):**
-- `IN1=HIGH, IN2=LOW`  → Forward
-- `IN1=LOW, IN2=HIGH`  → Reverse
-- `IN1=LOW, IN2=LOW`   → Coast (motor spins freely)
-- `IN1=HIGH, IN2=HIGH` → Brake (both sides driven—stops quickly)
-
-**Speed:** Use `analogWrite(ENA, 0..255)` to set PWM duty cycle.
+<img width="754" height="687" alt="image" src="https://github.com/user-attachments/assets/3a23f0ab-2a92-456a-8cb5-6193b7f4cbe1" />
 
 ---
 
-## 1.5 Power Safety and Protecting Other Hardware
+
+## 1.4 Power Safety and Protecting Other Hardware
 
 - **Never feed 9V directly** to 5V sensors (e.g., ultrasonic HC-SR04). Sensors expect **5V** (or sometimes **3.3V**).  
 - Use **separate power rails**: one for logic (Arduino **5V**) and one for motors (**battery pack**).  
 - **Common ground**: connect motor GND and Arduino GND together so signals have a reference.  
-- **Decoupling capacitors**: add 100 µF (electrolytic) near driver supply input + small 0.1 µF ceramics to reduce noise.  
 - **EMI noise**: motors produce electrical noise; keep sensor wires short and tidy; route motor power away from analog sensors.  
-- **Thermal limits**: drivers get warm; ensure adequate current rating and heatsinking for your motor load.
+- **Thermal limits**: drivers get warm; ensure adequate current rating
 
----
-
-## 1.6 Basic Examples
-
-### Example 1 — One Direction + PWM Speed (transistor switch)
-> For learning only (no reverse). Use a logic-level MOSFET if possible.
-
-```cpp
-// ONE MOTOR, ONE DIRECTION (PWM speed), using a MOSFET driver (low-side switch).
-// Wiring (simplified):
-//   Arduino D9 (PWM) -> gate (through ~100-220Ω resistor)
-//   Motor + -> External +Vm (e.g., 6-9V)    Motor - -> MOSFET Drain
-//   MOSFET Source -> GND (shared with Arduino GND)
-//   Flyback diode across motor (stripe to +Vm)
-
-const int MOTOR_PWM = 9;   // PWM-capable pin
-
-void setup() {
-  pinMode(MOTOR_PWM, OUTPUT);
-}
-
-void loop() {
-  // speed ramp up
-  for (int s = 0; s <= 255; s += 5) {
-    analogWrite(MOTOR_PWM, s);
-    delay(20);
-  }
-  // hold full speed
-  delay(1000);
-  // ramp down
-  for (int s = 255; s >= 0; s -= 5) {
-    analogWrite(MOTOR_PWM, s);
-    delay(20);
-  }
-  // stop briefly
-  delay(500);
-}
-```
-
-### Example 2 — Full H-Bridge (L298N/L293D style): Speed + Direction
-> Pins shown are typical; adjust to match your board.
-
-```cpp
-// FULL H-BRIDGE CONTROL (e.g., L298N, L293D)
-// ENA -> PWM pin for speed control
-// IN1, IN2 -> digital pins for direction
-
-const int ENA = 9;   // PWM pin
-const int IN1 = 7;   // Direction input 1
-const int IN2 = 8;   // Direction input 2
-
-void setup() {
-  pinMode(ENA, OUTPUT);
-  pinMode(IN1, OUTPUT);
-  pinMode(IN2, OUTPUT);
-
-  // Optional: start with motor stopped
-  analogWrite(ENA, 0);
-  digitalWrite(IN1, LOW);
-  digitalWrite(IN2, LOW);
-}
-
-void forward(int speedPWM) {
-  digitalWrite(IN1, HIGH);
-  digitalWrite(IN2, LOW);
-  analogWrite(ENA, constrain(speedPWM, 0, 255));
-}
-
-void reverse(int speedPWM) {
-  digitalWrite(IN1, LOW);
-  digitalWrite(IN2, HIGH);
-  analogWrite(ENA, constrain(speedPWM, 0, 255));
-}
-
-void coast() { // motor freewheels
-  digitalWrite(IN1, LOW);
-  digitalWrite(IN2, LOW);
-  analogWrite(ENA, 0);
-}
-
-void brake() { // active brake (short both sides)
-  digitalWrite(IN1, HIGH);
-  digitalWrite(IN2, HIGH);
-  analogWrite(ENA, 0);
-}
-
-void loop() {
-  // Forward ramp
-  for (int s = 0; s <= 255; s += 25) {
-    forward(s);
-    delay(300);
-  }
-
-  brake();   // quick stop
-  delay(500);
-
-  // Reverse medium speed
-  reverse(150);
-  delay(1500);
-
-  coast();   // let it spin down
-  delay(700);
-}
-```
 
 **Notes:**
 - Some L298N boards label **ENA/ENB** and provide a jumper.  
@@ -425,9 +302,188 @@ void loop() {
 - **+12V / +Vm** on the driver is **motor power**, **NOT** Arduino 5V.  
 - Provide **+5V logic** to the driver (some L298N boards have a 5V regulator you can enable with a jumper; read your board’s silkscreen/manual).
 
+- **ENA** = **Enable A** (controls the power path for **Motor A** outputs).
+- **ENB** = **Enable B** (controls the power path for **Motor B** outputs).
+- On many L298N boards, **ENA/ENB have little jumpers**:
+  - **Jumper ON** → EN tied to 5V → channel is **always enabled** at **full speed** (no PWM speed control).
+  - **Jumper OFF** → you must connect ENA/ENB to an **Arduino PWM pin** and use `analogWrite()` to control **speed**.
+- When **EN is LOW** → the corresponding motor outputs are **disabled** (motor **coasts**, not powered).
+- When **EN is HIGH** (or a PWM waveform) → the driver powers the motor according to **IN pins** and **PWM duty**.
+
+--- 
+## 1.5  Example
+
+Note first the pin diagram for the H bridge on tinkercad (different from what you would typically use in a real scenario but for the sake of simulations)
+
+<img width="376" height="212" alt="image" src="https://github.com/user-attachments/assets/4e9a8279-8e61-4057-94ac-892a65486158" />
+
+<img width="811" height="575" alt="image" src="https://github.com/user-attachments/assets/e3cb883d-15f4-42d9-a238-03ce0e783a59" />
+Wiring example on tinkerCAD
+
+### What the L293D Pins Mean (tiny mental model)
+
+- The chip has **two motor channels**:
+  - **Motor A** uses: `ENA` (enable A), `IN1`, `IN2`, and outputs `OUT1/OUT2`.
+  - **Motor B** uses: `ENB` (enable B), `IN3`, `IN4`, and outputs `OUT3/OUT4`.
+- **IN pins** choose **direction** (which way the motor spins).
+- **EN pins** turn the channel **on/off** and can accept **PWM** for **speed**.
+  - `HIGH` on EN → channel enabled (full speed if not using PWM).
+  - `LOW` on EN → channel off (motor **coasts**).
+  - `analogWrite(EN, 0..255)` → **speed control** (later, if needed).
+
 ---
 
-## 1.7 Common Pitfalls (and fixes)
+### Wiring 
+
+<img width="387" height="145" alt="image" src="https://github.com/user-attachments/assets/2915cec2-195b-4fd5-a4b2-2811811086b6" />
+
+- **Power**
+  - **Vs (pin 8)** → Motor battery **+** (e.g., 6–9 V).  
+    *This powers the motors.*  
+  - **Vss (pin 16)** → **Arduino 5V** (logic power for the chip).  
+  - **GND (pins 4,5,12,13)** → **Common ground** (tie to **Arduino GND** **and** motor battery −).
+- **Motor A (top motor in your image)**
+  - **OUT1 (pin 3)** and **OUT2 (pin 6)** → the two motor wires.
+  - **IN1 (pin 2)** → Arduino **D8**
+  - **IN2 (pin 7)** → Arduino **D7**
+  - **ENA (pin 1)** → Arduino **D9** (enable / PWM)
+- **Motor B (bottom motor in your image)**
+  - **OUT3 (pin 11)** and **OUT4 (pin 14)** → the two motor wires.
+  - **IN3 (pin 10)** → Arduino **D5**
+  - **IN4 (pin 15)** → Arduino **D4**
+  - **ENB (pin 9)** → Arduino **D3** (enable / PWM)
+
+> **Important:** The **grounds must all be connected together** (Arduino GND ↔ L293D GND ↔ battery −).  
+> **Tip:** 9V rectangular batteries are weak for motors; a 4xAA or 6xAA pack works much better.
+
+
+### Direction Cheat Sheet (for each motor)
+
+- **Forward:** `INx1 = HIGH`, `INx2 = LOW`
+- **Reverse:** `INx1 = LOW`,  `INx2 = HIGH`
+- **Brake:** set **both IN pins the same** (both HIGH or both LOW)
+- **Coast:** set the **EN pin LOW** (channel off)
+
+---
+
+## Code
+
+```cpp
+// ---------------------------------------------------------
+// L293D + TWO DC MOTORS (Forward → Reverse → Stop)
+// Matches the wiring shown in your image.
+//
+// Motor A pins (top motor):
+//   ENA -> D9   | IN1 -> D8 | IN2 -> D7 | OUT1/OUT2 -> motor wires
+// Motor B pins (bottom motor):
+//   ENB -> D3   | IN3 -> D5 | IN4 -> D4 | OUT3/OUT4 -> motor wires
+//
+// Power:
+//   Vs (pin 8)  -> Motor battery + (e.g., 6-9V)
+//   Vss (pin16) -> Arduino 5V (logic)
+//   GND (4,5,12,13) -> Common ground with Arduino GND and battery -
+//
+// EN pins:
+//   HIGH  = channel enabled (full speed if not using PWM)
+//   LOW   = channel off (coast)
+//   PWM   = speed control: analogWrite(EN, 0..255)
+// ---------------------------------------------------------
+int enableA = 9;   // ENA (enable/speed) for Motor A
+int in1Pin  = 8;   // IN1 (direction) for Motor A
+int in2Pin  = 7;   // IN2 (direction) for Motor A
+
+int enableB = 3;   // ENB (enable/speed) for Motor B
+int in3Pin  = 5;   // IN3 (direction) for Motor B
+int in4Pin  = 4;   // IN4 (direction) for Motor B
+
+void setup() {
+  // Tell Arduino these are outputs (we send signals out to the driver)
+  pinMode(enableA, OUTPUT);
+  pinMode(in1Pin,  OUTPUT);
+  pinMode(in2Pin,  OUTPUT);
+
+  pinMode(enableB, OUTPUT);
+  pinMode(in3Pin,  OUTPUT);
+  pinMode(in4Pin,  OUTPUT);
+
+  // Safe start: everything off
+  analogWrite(enableA, 0);   // channel A off (coast)
+  analogWrite(enableB, 0);   // channel B off (coast)
+  digitalWrite(in1Pin, LOW);
+  digitalWrite(in2Pin, LOW);
+  digitalWrite(in3Pin, LOW);
+  digitalWrite(in4Pin, LOW);
+}
+
+void loop() {
+  // DEMO: drive forward for 3 seconds, then go backwards for 3 seconds
+  // (You will add reverse/turn/brake in your breakout activity.)
+  forwardMotors(200);  // try values 100..220 to see what happens
+  delay(3000);
+  reverseMotors(200);
+  delay(3000);
+
+}
+
+void forwardMotors(int speedPWM) {
+  // keep speed in range 0..255
+  if (speedPWM < 0)   speedPWM = 0;
+  if (speedPWM > 255) speedPWM = 255;
+
+  // Set both motors to "forward" direction
+  digitalWrite(in1Pin, HIGH);  // Motor A: IN1=HIGH
+  digitalWrite(in2Pin, LOW);   //          IN2=LOW
+
+  digitalWrite(in3Pin, HIGH);  // Motor B: IN3=HIGH
+  digitalWrite(in4Pin, LOW);   //          IN4=LOW
+
+  // Enable channels with PWM for speed
+  analogWrite(enableA, speedPWM);  // ENA controls Motor A speed
+  analogWrite(enableB, speedPWM);  // ENB controls Motor B speed
+}
+
+// reverseMotors(speedPWM)
+// Purpose: spin BOTH motors in the reverse direction using an L293D/L298N-style H-bridge.
+// Inputs:
+//   speedPWM = 0..255  (0 = stop/coast, 255 = full speed)
+// How it works:
+//   - An H-bridge changes motor direction by flipping which side of the motor is tied HIGH vs LOW.
+//   - FORWARD used INx1=HIGH, INx2=LOW (for each motor).
+//   - REVERSE simply swaps them: INx1=LOW, INx2=HIGH.
+//   - ENA/ENB stay enabled with PWM to set the speed.
+//
+// Notes:
+//   • If "reverse" spins the wheels the wrong way for your robot, just swap the two wires on that motor,
+//     or redefine which pair of IN pins is considered "forward" vs "reverse".
+//   • Setting ENA/ENB to 0 makes the motor COAST (no active braking).
+//   • For an ACTIVE BRAKE you would set both IN pins for a motor to the SAME level (both HIGH or both LOW),
+//     while ENA/ENB are HIGH — that's a different function (brakeMotors) you can write later.
+// ---------------------------------------------------------
+void reverseMotors(int speedPWM) {
+  // Clamp to valid PWM range
+  if (speedPWM < 0)   speedPWM = 0;
+  if (speedPWM > 255) speedPWM = 255;
+
+  // ----- Motor A: reverse (flip polarity through the H-bridge) -----
+  // Forward was IN1=HIGH, IN2=LOW
+  // Reverse is  IN1=LOW,  IN2=HIGH
+  digitalWrite(in1Pin, LOW);
+  digitalWrite(in2Pin, HIGH);
+
+  // ----- Motor B: reverse (same idea) -----
+  digitalWrite(in3Pin, LOW);
+  digitalWrite(in4Pin, HIGH);
+
+  // Enable both channels with PWM to set speed
+  analogWrite(enableA, speedPWM);
+  analogWrite(enableB, speedPWM);
+}
+
+```
+
+---
+
+## 1.6 Common Pitfalls (and fixes)
 
 - **Motor won’t spin / resets Arduino:**  
   - Cause: drawing motor power from Arduino 5V.  
@@ -447,17 +503,17 @@ void loop() {
 
 ---
 
-## 1.8 Planning for Navigation (Two Motors)
+## Breakout Activity 1
 
-For differential (tank-style) drive with **two motors** (Left/Right):
-- Use **two H-bridge channels** (e.g., L298N supports 2 motors).
-- Control **speed** of each with PWM to go straight/turn.
-- Example logic:
-  - **Forward:** both motors forward, same PWM.
-  - **Turn right:** left motor forward, right motor slower or reverse.
-  - **Spin in place:** left forward, right reverse, same PWM.
+We have learned how to move forward (both motors going one direction) and move backwards (both motors spinning in the opposite direction). But how would we code our "robot cars" for turning?
 
-> We’ll combine this with sensors (e.g., ultrasonic) in later sections to do **case testing** and **basic navigation**.
+Create the following functions:
+
+void turnRight()
+void turnLeft()
+void reverseRight()
+void reverseLeft()
+
 
 ---
 
@@ -488,7 +544,7 @@ Your robot runs a fast loop:
 3. **Act** — set motor speed/direction (PWM & H-bridge pins).
 4. **Repeat** — a few dozen times per second.
 
-**Analogy:** A human driver constantly glances at the road (sense), decides “speed up / slow down / steer,” and moves pedals/wheel (act) — over and over.
+**Example:** A human driver constantly glances at the road (sense), decides “speed up / slow down / steer,” and moves pedals/wheel (act) — over and over.
 
 ---
 
@@ -504,13 +560,13 @@ Pick a **simple mission** first; keep the code short and clear.
 
 ---
 
-## 2.3 Light “Sensor Fusion” (Beginner Friendly)
+## 2.3 Ways to use the hardware we've learned
 
 You don’t need full robotics math to combine a couple signals:
 
 - **Ultrasonic** → sets a **safety distance**.
 - **Potentiometer** → sets a **target speed** (0–255 PWM).
-- **Button** → acts as **Emergency Stop (E-Stop)** (held = stop everything).
+- **Button** → acts as **Emergency Stop (E-Stop)** (held/pushed = stop everything).
 
 Rule example:
 - If **E-Stop pressed** → motors off.
@@ -518,135 +574,80 @@ Rule example:
 - Else if **distance < slowThreshold** → cap speed at a smaller PWM.
 - Else → allow knob-selected PWM.
 
----
-
-## 2.4 Safety Interlocks (Protect & Recover)
-
-- **E-Stop Button** (INPUT_PULLUP on pin 2, LOW = pressed): always honored first.
-- **Watchdog distance**: if no valid distance for 500 ms → stop (sensor disconnected?).
-- **Soft starts**: ramp PWM up/down to reduce brownouts and slipping.
-- **Battery check (optional)**: if using an analog divider, slow/stop on low battery.
 
 ---
 
-## 2.5 Minimal Two-Motor Helpers (L298N-style)
+## Breakout Activities Motors + Sensors \
 
-> Adjust pins to match your wiring.
+> Use your existing motor + H-bridge setup. Keep wiring the same across activities.
+> The bullets below describe behavior; you will choose pins and write the code.
 
-```cpp
-// ---- Motor driver pins (L298N / L293D style) ----
-const int ENA = 5;   // Left motor PWM  (must be PWM-capable)
-const int IN1 = 7;   // Left motor dir 1
-const int IN2 = 8;   // Left motor dir 2
 
-const int ENB = 6;   // Right motor PWM (must be PWM-capable)
-const int IN3 = 9;   // Right motor dir 1
-const int IN4 = 10;  // Right motor dir 2
 
-// ---- Inputs ----
-const int POT_PIN   = A0;  // Speed knob
-const int ESTOP_PIN = 2;   // Emergency stop (button to GND, INPUT_PULLUP)
+### Activity 1 — Distance-Based Speed Control
 
-// ---- Ultrasonic (HC-SR04) ----
-const int TRIG_PIN = 11;
-const int ECHO_PIN = 12;
+**Goal:** Drive forward by default. Slow down near obstacles. Stop when too close.
 
-// ---- Thresholds (cm) ----
-int stopThreshold = 15;
-int slowThreshold = 30;
+**Instructions:**
+- Read distance from the ultrasonic sensor continuously.
+- If distance **> 200 cm** → drive **fast**.
+- **Bonus challenge** If distance **100–200 cm** → drive **slow**. *(choose lower PWM value)*
+- If distance **≤ 100 cm** → **stop** both motors.
 
-// ---- Setup ----
-void setup() {
-  pinMode(ENA, OUTPUT); pinMode(IN1, OUTPUT); pinMode(IN2, OUTPUT);
-  pinMode(ENB, OUTPUT); pinMode(IN3, OUTPUT); pinMode(IN4, OUTPUT);
+**Good Practice:**
+- Print the live distance and chosen speed (FAST/SLOW/STOP) to the Serial Monitor.
 
-  pinMode(ESTOP_PIN, INPUT_PULLUP);
-  pinMode(TRIG_PIN, OUTPUT);
-  pinMode(ECHO_PIN, INPUT);
+---
 
-  Serial.begin(9600);
-  // optional: ensure motors are stopped
-  stopMotors();
-}
+### Activity 2 — Obstacle Avoidance (Stop → Turn → Go)
 
-// ---- Motor helpers ----
-void leftMotor(int pwm, bool forward) {
-  digitalWrite(IN1, forward ? HIGH : LOW);
-  digitalWrite(IN2, forward ? LOW  : HIGH);
-  analogWrite(ENA, constrain(pwm, 0, 255));
-}
+**Goal:** Move forward until an obstacle is detected at a close distance, then avoid it.
 
-void rightMotor(int pwm, bool forward) {
-  digitalWrite(IN3, forward ? HIGH : LOW);
-  digitalWrite(IN4, forward ? LOW  : HIGH);
-  analogWrite(ENB, constrain(pwm, 0, 255));
-}
+**Instructions:**
+- Drive forward by default.
+- When the ultrasonic sensor reports **≤ 75 cm**:
+  - **Stop** both motors.
+  - **Turn in place** for about **3 seconds** (pick left or right).
+  - After turning, **resume forward** motion.
+- Repeat this behavior continuously.
 
-void stopMotors() {
-  analogWrite(ENA, 0);
-  analogWrite(ENB, 0);
-  // Optionally “brake”:
-  // digitalWrite(IN1, HIGH); digitalWrite(IN2, HIGH);
-  // digitalWrite(IN3, HIGH); digitalWrite(IN4, HIGH);
-}
+Wiring LEDs into your circuits (good practice for live troubleshooting)
+**Bonus Challenge (Status LEDs):**
+- While **distance > 100 cm** → **GREEN LED ON**, **RED LED OFF**.
+- While **distance ≤ 100 cm** (stopped/turning) → **RED LED ON**, **GREEN LED OFF**.
 
-// ---- Ultrasonic read (cm) with timeout ----
-float readDistanceCm() {
-  // trigger
-  digitalWrite(TRIG_PIN, LOW); delayMicroseconds(2);
-  digitalWrite(TRIG_PIN, HIGH); delayMicroseconds(10);
-  digitalWrite(TRIG_PIN, LOW);
-  // echo
-  unsigned long dur = pulseIn(ECHO_PIN, HIGH, 25000UL); // ~4+ m
-  if (dur == 0) return NAN;
-  return (dur * 0.0343f) / 2.0f;
-}
+---
 
-// ---- Main control loop (Sense → Decide → Act) ----
-void loop() {
-  // SENSE
-  bool estop = (digitalRead(ESTOP_PIN) == LOW);
-  int potRaw = analogRead(POT_PIN);                  // 0..1023
-  int userPWM = map(potRaw, 0, 1023, 0, 255);        // target speed
-  float d = readDistanceCm();                        // cm (NaN if no echo)
+### Activity 3 — Emergency Brake Button
 
-  // DECIDE
-  int cmdPWM = userPWM;       // start from user request
-  bool goFwd = true;          // forward by default
-  bool move  = true;          // assume we can move
+**Goal:** Add a manual “brake” to immediately stop the robot.
 
-  if (estop) {
-    move = false;
-  } else if (isnan(d)) {
-    // no reading → be safe
-    move = false;
-  } else if (d < stopThreshold) {
-    move = false;
-  } else if (d < slowThreshold) {
-    cmdPWM = min(cmdPWM, 120); // cap speed when near obstacle
-  }
+**Instructions:**
+- Drive forward at a steady speed by default.
+- When the **pushbutton is pressed** → **stop** the motors immediately.
+- When the **pushbutton is released** → **resume forward** motion. (remember the while loop we used)
 
-  // ACT
-  if (!move) {
-    stopMotors();
-  } else {
-    leftMotor(cmdPWM, goFwd);
-    rightMotor(cmdPWM, goFwd);
-  }
+**Bonus Challenge (Status LEDs):**
+- **GREEN LED ON** while moving forward, **RED LED OFF**.
+- **RED LED ON** while stopped by the button, **GREEN LED OFF**.
 
-  // DEBUG
-  Serial.print("PWM="); Serial.print(cmdPWM);
-  Serial.print("  d="); Serial.print(isnan(d) ? -1 : d, 1);
-  Serial.print("  move="); Serial.println(move ? "Y" : "N");
+---
 
-  delay(50);
-}
-```
+### Activity 4 — Speed Knob (Potentiometer → Motor PWM)
 
-> **Tip:** To *turn*, drive the two sides differently:  
-> - **Veer right:** left faster than right.  
-> - **Pivot left:** left reverse, right forward (same PWM).  
-> Add a simple “avoid” routine if `d < stopThreshold`: pivot for ~400 ms, then try forward again.
+**Goal:** Control motor speed with a knob.
+
+**Instructions:**
+- Read the potentiometer (wiper) value continuously.
+- Convert the knob reading to a **PWM speed** for the motors.
+- As you turn the knob:
+  - Far left → **stop** (PWM ≈ 0).
+  - Far right → **fast** (PWM near maximum).
+  - Anywhere in between → **proportional speed**.
+
+**Bonus Challenge:**
+- Status LEDs: **GREEN ON** when speed > 0, **RED ON** when stopped.
+
 
 ---
 
@@ -722,8 +723,12 @@ Serial.println(speed);
 **Bottom line:** Good driving behavior comes from good testing.  
 Plan your tests, write down what happens, and make changes one step at a time.
 
-## Breakout Activities
 
-## Wrap-Up 
+## Friday Activities Preview!
 
-## Friday Activites Preview!
+<img width="515" height="246" alt="image" src="https://github.com/user-attachments/assets/8c4a8f7a-5514-4be4-bc06-c1727a3f9ae5" />
+
+
+<img width="484" height="383" alt="image" src="https://github.com/user-attachments/assets/e2f34c99-c7fd-4d99-9452-2ad7dfbb1327" />
+
+
