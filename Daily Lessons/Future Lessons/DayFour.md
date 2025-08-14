@@ -77,6 +77,114 @@ float speedOfSound = 0.0343f;  // centimeters per microsecond
 ```
 
 
+## Servo Motors — Basics → Wiring → Code
+
+### What a servo is (quick basics)
+- A **servo motor** rotates to a **specific angle** you command (commonly 0°–180°).
+- Inside the plastic case are:
+  - A small **DC motor** (provides the spin),
+  - A set of **gears** (adds torque, slows the speed),
+  - A tiny **control board** (reads your signal and decides what to do),
+  - A **feedback potentiometer** attached to the output shaft (tells the control board the current angle).
+- You tell the servo “what angle to go to” by sending it a **repeating control pulse** on a single **signal** wire:
+  - ~**1.0 ms** pulse ≈ **0°** (one extreme),
+  - ~**1.5 ms** pulse ≈ **90°** (center),
+  - ~**2.0 ms** pulse ≈ **180°** (other extreme).
+- These pulses repeat roughly every **20 ms** (≈ **50 Hz**).  
+  The **Arduino Servo library** does all this precise timing for you so you can just say “go to 90°”.
+
+---
+
+
+
+### Typical wiring (3-wire servo)
+- **Brown/Black** → **GND**
+- **Red** → **+5 V** (or **external 5–6 V servo supply**)
+- **Orange/Yellow/White** → **Signal** (Arduino digital pin, e.g., **D9**)
+
+> **Tip:** If using an external supply, connect **servo +5 V** to the supply’s +5 V (not to Arduino 5 V).  
+> But **always** connect the grounds together (Arduino GND ↔ supply GND ↔ servo GND).
+
+
+### Arduino Libraries — What they are & how the Servo library helps (beginner-friendly)
+- **What is a library?**  
+  Think of a library as a **toolbox** of pre-built functions someone else wrote for you.  
+  Instead of building a hammer from scratch, you just **grab the hammer** and use it.
+- **Why use them?**  
+  Libraries save time and reduce bugs. They hide tricky details (like precise pulse timings) behind **simple functions**.
+- **How to use a library (analogy):**  
+  If your sketch is a **kitchen**, a library is a **ready-made appliance**.  
+  You **plug it in** (`#include <Servo.h>`), then **press a button** (`servo.write(90)`) instead of cooking every step by hand.
+- **How the Servo library works (in simple terms):**
+  - It sets up a **50 Hz** repeating cycle.
+  - It generates the **1.0–2.0 ms** control pulses **at the right time**, every cycle.
+  - You just call **`servo.write(angle);`** and it handles the timing safely in the background.
+
+**Including and installing libraries**
+- Many core libraries (like **Servo**) already come with the Arduino IDE.  
+- For others, use **Sketch → Include Library → Manage Libraries…** to search and install.
+- To use a library in code, add at the **top** of your sketch:
+  ```cpp
+  #include <Servo.h>
+
+## 4. Potentiometer — Quick Review (Beginner-Friendly)
+
+**What it is:** A potentiometer (a “pot”) is a **voltage faucet**. When you turn the knob, you choose **how much of the 5V** gets sent to the middle pin called the **wiper**.  
+It has **3 pins**:
+- One **outer** pin → **5V**
+- The other **outer** pin → **GND (0V)**
+- The **middle** pin → **Wiper** (outputs a voltage **between 0V and 5V** depending on knob position)
+
+**How Arduino reads it:**  
+`analogRead(A0)` measures the wiper voltage and returns a number **0..1023**:
+- **0V → ~0**
+- **~2.5V → ~512**
+- **5V → ~1023**  
+(That’s a **10-bit ADC**: 0..1023)
+
+**Wiring (quick):**
+- Left outer → **5V**
+- Right outer → **GND**
+- Middle (wiper) → **A0**  
+If turning clockwise makes numbers go **down**, swap the **two outer** wires.
+
+
+
+### Code example — Read the wiper and print the voltage
+
+```cpp
+// POTENTIOMETER DEMO 1: Read the knob and print raw value + voltage
+// Wiring:
+//   - Pot outer pins -> 5V and GND
+//   - Pot middle pin (wiper) -> A0
+//
+// Open Serial Monitor at 9600 baud to see lines like:
+//   Wiper: 0..1023  |  Voltage: 0.00..5.00 V
+//
+// NOTE about the 'f' at the end of numbers like 1023.0f or 5.0f:
+//   In C++, decimals are 'double' by default (8 bytes).
+//   Adding 'f' makes them 'float' (4 bytes). On Arduino, 'float' is lighter
+//   and avoids hidden double→float conversions (saves memory and time).
+
+int wiperPin = A0;
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int   wiperReading = analogRead(wiperPin);            // 0..1023
+  float wiperVoltage = (wiperReading / 1023.0f) * 5.0f; // 0.00..5.00 V
+
+  Serial.print("Wiper: ");
+  Serial.print(wiperReading);
+  Serial.print("  |  Voltage: ");
+  Serial.print(wiperVoltage, 2); // two decimals, e.g., 2.47
+  Serial.println(" V");
+
+  delay(150); // small pause so text is readable
+}
+```
 
 
 ---
