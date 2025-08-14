@@ -9,6 +9,7 @@ If servos are great for precise angle control, **DC motors** are all about conti
 ## Review of Previous Content
 
 ### Ultrasonic Sensor (HC-SR04) — Physics → Wiring → Code
+<img width="358" height="141" alt="image" src="https://github.com/user-attachments/assets/f83f0cff-25dc-4b04-8795-e49f7af9af44" />
 
 **How it works (quick physics):**
 - Sends an ultrasonic **pulse** at **40 kHz** (transmitter).
@@ -130,6 +131,8 @@ float speedOfSound = 0.0343f;  // centimeters per microsecond
   #include <Servo.h>
 
 ## 4. Potentiometer — Quick Review (Beginner-Friendly)
+
+<img width="300" height="180" alt="image" src="https://github.com/user-attachments/assets/2fdbe38f-d172-46eb-8f6b-77b3a17831ca" />
 
 **What it is:** A potentiometer (a “pot”) is a **voltage faucet**. When you turn the knob, you choose **how much of the 5V** gets sent to the middle pin called the **wiper**.  
 It has **3 pins**:
