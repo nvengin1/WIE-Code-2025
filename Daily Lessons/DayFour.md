@@ -270,10 +270,20 @@ DC motors are the **workhorses** of mobile robots. Unlike servos (which move to 
 
 ## 1.3 Why You Need a Motor Driver (H-Bridge)
 
+**Analogy Example:**  
+Think of the Arduino as a child with a **light remote** (small power), and the motor as a **garage door** (big power). The child can’t lift the door directly.  
+The **motor driver** is the **adult** who listens to the child’s remote (Arduino signals) and then does the heavy lifting using a strong power source (battery).
+
+
+**What the driver does for you:**
 A **motor driver** is an electronic “middleman” that:
-- Lets a low-power signal from Arduino **control** a higher-power motor.
-- Handles **direction** (forward/reverse) and **speed** (PWM).
-- Protects the microcontroller from **back EMF** (voltage spikes when motors stop/change speed).
+- **Direction:** Makes the motor spin **forward or reverse** by flipping which motor wire gets the **+** and which gets **−** (polarity flip).  
+- **Speed:** Changes how **hard** the motor is driven using **PWM** (quick ON/OFF bursts).  
+- **Protection:** Stops motor “kicks” (voltage spikes called **back EMF**) from hurting the Arduino.
+
+**Back EMF in one sentence:**  
+- A spinning motor is also a little generator; when you suddenly stop or change speed, it **pushes back** electricity. Drivers have **diodes** (tiny one-way doors) to safely absorb these kicks.
+
 
 Common options:
 - **L293D / SN754410** (small robots)
@@ -295,17 +305,19 @@ Drivers include **flyback diodes** or internal protection to absorb these spikes
 
 - **Never feed 9V directly** to 5V sensors (e.g., ultrasonic HC-SR04). Sensors expect **5V** (or sometimes **3.3V**).  
 - Use **separate power rails**: one for logic (Arduino **5V**) and one for motors (**battery pack**).  
-- **Common ground**: connect motor GND and Arduino GND together so signals have a reference.  
+- Always connect a **common ground**: Arduino **GND ↔ Driver GND ↔ Motor battery −**.  
+  (This gives both sides the same “zero line” to talk through.)
 - **EMI noise**: motors produce electrical noise; keep sensor wires short and tidy; route motor power away from analog sensors.  
 - **Thermal limits**: drivers get warm; ensure adequate current rating
 
+## ENA / ENB — What Do They Mean?
 
-**Notes:**
+> You’ll see **ENA** and **ENB** on **L298N boards** (and **EN1,2** / **EN3,4** on **L293D chips**).  
+> **EN** stands for **ENable**: it’s like a **valve** that allows power to reach that motor channel.
+
 - Some L298N boards label **ENA/ENB** and provide a jumper.  
-  - **Remove the jumper** if you want to use **PWM** from Arduino.  
 - **+12V / +Vm** on the driver is **motor power**, **NOT** Arduino 5V.  
 - Provide **+5V logic** to the driver (some L298N boards have a 5V regulator you can enable with a jumper; read your board’s silkscreen/manual).
-
 - **ENA** = **Enable A** (controls the power path for **Motor A** outputs).
 - **ENB** = **Enable B** (controls the power path for **Motor B** outputs).
 - On many L298N boards, **ENA/ENB have little jumpers**:
@@ -318,6 +330,17 @@ Drivers include **flyback diodes** or internal protection to absorb these spikes
 ## 1.5  Example
 
 Note first the pin diagram for the H bridge on tinkercad (different from what you would typically use in a real scenario but for the sake of simulations)
+
+## L293D vs L298N — Same Ideas, Different Packaging
+
+- **L293D (chip on breadboard)**  
+  - Two channels.  
+  - Enable pins are called **EN1,2 (pin 1)** for Motor A and **EN3,4 (pin 9)** for Motor B.  
+  - Logic 5V = **Vss (pin 16)**, Motor voltage = **Vs (pin 8)**, and **GND on 4/5/12/13**.
+- **L298N (red/green driver board)**  
+  - Labeled screw terminals and big pins.  
+  - **ENA, IN1, IN2** → Motor A. **ENB, IN3, IN4** → Motor B.  
+  - **+12V/+Vm** = motor power, **+5V** = logic (some boards can make 5V from motor power via a jumper—read the silkscreen).
 
 <img width="376" height="212" alt="image" src="https://github.com/user-attachments/assets/4e9a8279-8e61-4057-94ac-892a65486158" />
 
@@ -538,6 +561,15 @@ void reverseLeft()
 Driving is **not** just “spin motors.” It’s: *go to a goal, avoid trouble, and keep the robot alive*.  
 This section shows how to turn sensors into **control decisions** for a simple two-wheel (differential) robot using DC motors.
 
+
+## 10-Second Recap
+
+- Arduino pins are **too small** to power motors directly.  
+- Use a **motor driver (H-Bridge)**: Arduino tells it **direction** (IN pins) and **speed** (ENA/ENB with PWM).  
+- Feed motors from a **separate battery** and always share **ground**.  
+- **ENA/ENB** are **valves**: LOW = off, HIGH = full, PWM = variable speed.
+
+  
 ---
 
 ## 2.1 Control Loop Basics (Sense → Decide → Act → Repeat)
