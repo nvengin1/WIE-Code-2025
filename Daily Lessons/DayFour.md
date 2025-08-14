@@ -98,6 +98,8 @@ float speedOfSound = 0.0343f;  // centimeters per microsecond
 
 
 ### Typical wiring (3-wire servo)
+<img width="311" height="162" alt="image" src="https://github.com/user-attachments/assets/aec3f023-fed3-4c17-832d-6f7187d66734" />
+
 - **Brown/Black** → **GND**
 - **Red** → **+5 V** (or **external 5–6 V servo supply**)
 - **Orange/Yellow/White** → **Signal** (Arduino digital pin, e.g., **D9**)
@@ -248,6 +250,8 @@ DC motors are the **workhorses** of mobile robots. Unlike servos (which move to 
 <img width="403" height="304" alt="image" src="https://github.com/user-attachments/assets/ccabbd34-809c-4c35-be4e-a45aa3e31c95" />
 
 **Key idea:** A current-carrying wire in a magnetic field experiences a **force** (Lorentz force). Repeating this around the rotor makes continuous rotation.
+
+[To visualize this process, watch this video](https://youtu.be/8XF3LHvjieM?feature=shared&t=4)
 
 ---
 
