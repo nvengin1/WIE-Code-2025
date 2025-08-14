@@ -669,11 +669,9 @@ All activities will be simulated in **TinkerCAD Circuits**.
 
 **Instructions:**
 1. Place ultrasonic sensor facing forward.
-2. If object distance < 10 cm:
+2. If object distance < 100 cm:
    - Move servo to 90° (open).
-   - Wait 3 seconds.
-   - Return to 0° (closed).
-3. Otherwise, keep servo at 0°.
+3. Otherwise, keep servo at 0° (closed).
 
 
 ---
