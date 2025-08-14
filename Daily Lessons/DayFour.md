@@ -577,6 +577,7 @@ Rule example:
 
 
 ---
+<img width="50" height="50" alt="image" src="https://github.com/user-attachments/assets/c53d4193-b18f-4810-a142-23deaf526a36" />
 
 ## Breakout Activities Motors + Sensors \
 
